@@ -62,12 +62,12 @@ class CreateTransactionFragment : Fragment() {
         spCategory.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
-            listOf("Food", "Transport", "Bills", "Shopping", "Other")
+            listOf("Clothing", "Entertainment", "Food", "Fuel", "Groceries", "Health", "Housing", "Internet", "Insurance")
         )
         spPayment.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
-            listOf("Cash", "Credit Card", "Debit Card", "Online")
+            listOf("Cash", "Credit Card", "Debit Card")
         )
 
         // Date picker
@@ -101,7 +101,7 @@ class CreateTransactionFragment : Fragment() {
                 date, start, end, desc
             )
 
-            // TODO: send `expense` to ViewModel / DB / parent Activity
+
             Toast.makeText(requireContext(),
                 "Added: $expense",
                 Toast.LENGTH_LONG).show()

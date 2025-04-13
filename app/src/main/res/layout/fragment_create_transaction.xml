@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- HEADER -->
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Create an Expense"
+            android:text="Create A Transaction"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- TITLE -->
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -42,9 +42,6 @@
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <!-- TYPE -->
-
-        <!-- AMOUNT -->
 
         <EditText
             android:id="@+id/etTitle"
@@ -82,9 +79,6 @@
             app:layout_constraintStart_toEndOf="@+id/etTitle"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <!-- CATEGORY -->
-
-        <!-- PAYMENT METHOD -->
 
         <TextView
             android:id="@+id/textView5"
@@ -141,15 +135,6 @@
             app:layout_constraintBottom_toTopOf="@+id/textView8"
             app:layout_constraintStart_toStartOf="@+id/etAmount" />
 
-        <!-- DATE -->
-
-        <!-- START TIME -->
-
-        <!-- END TIME -->
-
-        <!-- DESCRIPTION -->
-
-        <!-- ADD BUTTON -->
 
         <Spinner
             android:id="@+id/spPayment"
