@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Sign_up">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Sign_in_text"
+        android:text="@string/sign_up"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:id="@+id/Sign_up_email"
+        android:autofillHints=""
+
+        android:hint="@string/email"
+        tools:ignore="TextFields" />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:id="@+id/Sign_up_password"
+        android:autofillHints=""
+
+        android:hint="@string/Password"
+        app:passwordToggleEnabled="false" />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:id="@+id/Sign_up_password_confirm"
+        android:autofillHints=""
+
+        android:hint="@string/comform_password"
+        app:passwordToggleEnabled="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Sign_up_button"
+        android:text="@string/sign_up_button"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Sign_up_login"
+        android:text="@string/already_have_an_account_login"
+        android:textAlignment="center"/>
+</LinearLayout>
