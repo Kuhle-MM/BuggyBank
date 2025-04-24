@@ -31,6 +31,10 @@ class Sign_up : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        binding.SignUpLogin.setOnClickListener {
+            val intent = Intent(this@Sign_up, Sign_in::class.java)
+            startActivity(intent)
+        }
         binding.SignUpButton.setOnClickListener {
             val email = binding.SignUpEmail.text.toString()
             val password = binding.SignUpPassword.text.toString()
