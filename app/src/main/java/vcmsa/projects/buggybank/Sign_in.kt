@@ -35,18 +35,25 @@ class Sign_in : AppCompatActivity() {
         binding.SignInButton.setOnClickListener {
             val email = binding.SignInEmail.text.toString()
             val password = binding.SignInPassword.text.toString()
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
-                    if (it.isSuccessful) {
-                        val intent = Intent(this@Sign_in, MainActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this@Sign_in, "Sign in failed", Toast.LENGTH_SHORT).show()
+           
+            if(email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this@Sign_in, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                
+            }   else {
+                if (email.isNotEmpty() && password.isNotEmpty()) {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
+                        if (it.isSuccessful) {
+                            val intent = Intent(this@Sign_in, MainActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(this@Sign_in, "User does not exist", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
+                
             }
         }
        
        
     }
+}
 }

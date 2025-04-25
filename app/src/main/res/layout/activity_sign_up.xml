@@ -30,17 +30,15 @@
         android:layout_height="80dp"
         android:id="@+id/Sign_up_password"
         android:autofillHints=""
-
         android:hint="@string/Password"
-        app:passwordToggleEnabled="false" />
+        app:passwordToggleEnabled="true"/>
     <EditText
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:id="@+id/Sign_up_password_confirm"
         android:autofillHints=""
-
         android:hint="@string/comform_password"
-        app:passwordToggleEnabled="false" />
+        app:passwordToggleEnabled="true" />
 
     <Button
         android:layout_width="wrap_content"
