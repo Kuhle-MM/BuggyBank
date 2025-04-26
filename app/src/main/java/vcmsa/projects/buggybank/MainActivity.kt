@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    //    val intent = Intent(this,menubar::class.java)
-    //    startActivity(intent)
+        val intent = Intent(this,menubar::class.java)
+        startActivity(intent)
 
     }
     //   docsFolder.mkdirs()
