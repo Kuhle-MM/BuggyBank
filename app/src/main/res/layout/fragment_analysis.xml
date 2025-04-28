@@ -6,5 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AnalysisFragment">
 
+    <TextView
+        android:id="@+id/txtChart"
+        android:layout_width="157dp"
+        android:layout_height="33dp"
+        android:fontFamily="@font/chakra_petch_light"
+        android:text="MARCH'S COMPARISON"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="221dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/statusBar"
+        android:layout_width="381dp"
+        android:layout_height="352dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
