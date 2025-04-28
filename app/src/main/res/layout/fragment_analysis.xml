@@ -13,8 +13,8 @@
         android:fontFamily="@font/chakra_petch_light"
         android:text="MARCH'S COMPARISON"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="221dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/statusBar"
