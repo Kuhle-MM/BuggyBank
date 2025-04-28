@@ -107,7 +107,6 @@ class CreateTransactionFragment : Fragment() {
                 Toast.LENGTH_LONG).show()
         }
     }
-
     private fun showDatePicker(target: EditText) {
         val cal = Calendar.getInstance()
         DatePickerDialog(
