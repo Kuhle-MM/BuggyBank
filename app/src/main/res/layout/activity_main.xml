@@ -9,9 +9,9 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="vcmsa.projects.buggybank.CreateTransactionFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:name="vcmsa.projects.buggybank.CreateCategoryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="197dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

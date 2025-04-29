@@ -1,111 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- RecyclerView to display categories -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create A Category"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-    <!-- Label: Name -->
-
-    <!-- Plain Text Input -->
-
-    <!-- Label: Type -->
-
-    <!-- RadioGroup for Expense / Income -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginBottom="45dp"
-        app:layout_constraintBottom_toTopOf="@+id/categoryNameInput"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/labelName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/labelName"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/labelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="10dp"
         android:text="Name:"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/categoryNameInput"
+        app:layout_constraintTop_toBottomOf="@id/categoryRecyclerView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/categoryNameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="327dp"
         android:hint="Enter category name"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/labelName" />
+        android:minHeight="48dp"
+        android:layout_marginTop="4dp"/>
 
     <TextView
         android:id="@+id/labelType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Type:"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/categoryNameInput"
-        app:layout_constraintTop_toBottomOf="@+id/categoryNameInput" />
+        app:layout_constraintTop_toBottomOf="@id/categoryNameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <RadioGroup
         android:id="@+id/typeRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/labelType"
-        app:layout_constraintStart_toStartOf="@+id/labelType"
-        app:layout_constraintTop_toBottomOf="@+id/labelType">
+        app:layout_constraintTop_toBottomOf="@id/labelType"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp">
 
+        <RadioButton
+            android:id="@+id/incomeRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Income" />
+
+        <RadioButton
+            android:id="@+id/expenseRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expense"
+            android:layout_marginStart="16dp" />
     </RadioGroup>
 
-    <!-- Add Button -->
     <Button
         android:id="@+id/addCategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
         android:text="Add"
+        app:layout_constraintTop_toBottomOf="@+id/typeRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expenseRadioButton" />
-
-    <RadioButton
-        android:id="@+id/expenseRadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
-        android:text="Expense"
-        app:layout_constraintStart_toEndOf="@+id/incomeRadioButton"
-        app:layout_constraintTop_toBottomOf="@+id/labelType" />
-
-    <RadioButton
-        android:id="@+id/incomeRadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Income"
-        app:layout_constraintBaseline_toBaselineOf="@+id/expenseRadioButton"
-        app:layout_constraintStart_toStartOf="@+id/typeRadioGroup" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="Create A Category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
