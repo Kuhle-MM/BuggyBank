@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AnalysisFragment">
+
+    <TextView
+        android:id="@+id/txtChart"
+        android:layout_width="157dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/chakra_petch_light"
+        android:text="MARCH'S COMPARISON"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.907" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="104dp"
+        app:layout_constraintBottom_toTopOf="@+id/statusBar"
+        app:layout_constraintEnd_toStartOf="@+id/txtCurrentSpending2" />
+
+    <TextView
+        android:id="@+id/txtCurrentSpending2"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/chakra_petch"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCurrentSpending1" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="74dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="24dp"
+        android:gravity="center"
+        android:text="TOTAL EXPENSES:"
+        app:layout_constraintBottom_toTopOf="@+id/txtTotalExpenses"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtChart3"
+        android:layout_width="76dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/chakra_petch_light"
+        android:text="CHART"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/statusBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtSavedMost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/chakra_petch_bold"
+        android:text="SavedMostData"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.212" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="99dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="OVERPSPENT IN:"
+        app:layout_constraintBottom_toTopOf="@+id/txtOverspent"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/txtTotalExpenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="24dp"
+
+        android:fontFamily="@font/chakra_petch_bold"
+        android:text="TotalExpenseData"
+        app:layout_constraintBottom_toTopOf="@+id/txtChart3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+        app:layout_constraintEnd_toStartOf="@+id/txtCurrentSpending1" />
+
+    <TextView
+        android:id="@+id/txtCurrentSpending1"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/chakra_petch"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtChart2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="184dp"
+        android:text="SAVED MOST IN:"
+        app:layout_constraintBottom_toTopOf="@+id/txtChart3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtOverspent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="92dp"
+        android:fontFamily="@font/chakra_petch_bold"
+        android:text="OverspentData"
+        app:layout_constraintBottom_toTopOf="@+id/statusBar"
+        app:layout_constraintStart_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/txtChart2"
+        android:layout_width="76dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/chakra_petch_light"
+        android:text="CURRENT"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtChart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/statusBar"
+        android:layout_width="381dp"
+        android:layout_height="352dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
