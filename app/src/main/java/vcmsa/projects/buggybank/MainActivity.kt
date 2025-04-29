@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-    var reportArray =ArrayList<ReportDB>()
+    //var reportArray =ArrayList<ReportDB>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val intent = Intent(this,menubar::class.java)
+       // val intent = Intent(this,menubar::class.java)
         startActivity(intent)
 
     }
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 }
 
     //   docsFolder.mkdirs()
-}
+
 val pdfReportDocument = PdfDocument()
 val reportInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
 val page = pdfReportDocument.startPage(reportInfo)

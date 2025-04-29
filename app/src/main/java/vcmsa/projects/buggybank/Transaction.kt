@@ -4,13 +4,14 @@ import java.sql.Time
 import java.util.Date
 
 data class Transaction(
-        var title: String = "",
-        var transactionType: String = "",
-        var paymentMethod: String = "",
-        var amount: Double = 0.0,
-        var category: String = "",
-        var dateOfTransaction: Date = Date(),
-        var endTime: Time = Time(0),
-        var startTime: Time = Time(0),
-        var description: String = ""
+        val title: String,
+        val category: String,
+        val paymentMethod: String,
+        val amount: Double,
+        val dateOfTransaction: String,  // Change to Date if you need proper Date handling
+        val transactionType: String,
+        val description: String,
+        val startTime: String,
+        val endTime: String,
+        var isExpanded: Boolean = false  // To track if the item is expanded
 )

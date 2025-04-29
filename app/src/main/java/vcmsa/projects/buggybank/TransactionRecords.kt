@@ -28,6 +28,9 @@ private const val ARG_PARAM2 = "param2"
 class TransactionRecords : Fragment() {
     private lateinit var rootNode: FirebaseDatabase
     private lateinit var userReference: DatabaseReference
+    private lateinit var adapter: TransactionRecordsAdapter
+    private lateinit var transactionsList: RecyclerView
+    private val transactions = ArrayList<Transaction>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,23 +38,29 @@ class TransactionRecords : Fragment() {
     ): View? {
 
         val layout = inflater.inflate(R.layout.fragment_transaction_records, container, false)
-        val transactionsList: RecyclerView = layout.findViewById(R.id.rvTransactions)
 
-         //is the database
-        userReference = rootNode.getReference("Transactions") //finds this in the database; this is calling all the data that is linked with the users name
+        transactionsList = layout.findViewById(R.id.rvTransactions)
+        adapter = TransactionRecordsAdapter(transactions)
+        transactionsList.adapter = adapter
 
+        // Initialize Firebase and fetch data
+        rootNode = FirebaseDatabase.getInstance()
+        userReference = rootNode.getReference("transactions") // Be consistent with your key names
+
+
+        fetchTransactionsFromFirebase()
         return layout
     }
 
     private fun fetchTransactionsFromFirebase() {
         rootNode = FirebaseDatabase.getInstance()
-        val databaseRef = FirebaseDatabase.getInstance().getReference("transactions")
+        userReference = rootNode.getReference("transactions")
 
-        databaseRef.addValueEventListener(object : ValueEventListener {
+        userReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 transactions.clear()
-                for (child in snapshot.children) {
-                    val transaction = child.getValue(Transaction::class.java)
+                for (snapshot1 in snapshot.children) {
+                    val transaction = snapshot1.getValue(Transaction::class.java)
                     if (transaction != null) {
                         transactions.add(transaction)
                     }
