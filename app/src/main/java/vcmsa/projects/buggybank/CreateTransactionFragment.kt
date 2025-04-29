@@ -19,6 +19,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class CreateTransactionFragment : Fragment() {
 
     private lateinit var etTitle: EditText
@@ -30,6 +31,15 @@ class CreateTransactionFragment : Fragment() {
     private lateinit var etStartTime: EditText
     private lateinit var etEndTime: EditText
     private lateinit var etDescription: EditText
+    private lateinit var title: EditText
+    private lateinit var transactionType: Spinner
+    private lateinit var amount: EditText
+    private lateinit var category: Spinner
+    private lateinit var paymentMethod: Spinner
+    private lateinit var dateOfTransaction: EditText
+    private lateinit var startTime: EditText
+    private lateinit var endTime: EditText
+    private lateinit var description: EditText
     private lateinit var btnAdd: Button
     private lateinit var btnAddImage: FrameLayout
     private lateinit var imagePreview: ImageView
@@ -46,6 +56,7 @@ class CreateTransactionFragment : Fragment() {
             imagePreview.setImageURI(imageUri)
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,25 +78,38 @@ class CreateTransactionFragment : Fragment() {
         etDescription = view.findViewById(R.id.editTextDescription)
         btnAdd        = view.findViewById(R.id.btnAdd)
 
+        title = view.findViewById(R.id.etTitle)
+        transactionType = view.findViewById(R.id.spType)
+        amount = view.findViewById(R.id.etAmount)
+        category = view.findViewById(R.id.spCategory)
+        paymentMethod = view.findViewById(R.id.spPayment)
+        dateOfTransaction = view.findViewById(R.id.etDate)
+        startTime = view.findViewById(R.id.etStartTime)
+        endTime = view.findViewById(R.id.etEndTime)
+        description = view.findViewById(R.id.editTextDescription)
+        btnAdd = view.findViewById(R.id.btnAdd)
+
         btnAddImage   = view.findViewById(R.id.btnAddImage)
         imagePreview  = view.findViewById(R.id.imagePreview)
 
-        listOf(etDate, etStartTime, etEndTime).forEach {
+        listOf(dateOfTransaction, startTime, endTime).forEach {
             it.isFocusable = false
             it.isClickable = true
         }
 
         spType.adapter = ArrayAdapter(
+
+        transactionType.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             listOf("Expense", "Income")
         )
-        spCategory.adapter = ArrayAdapter(
+        category.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             listOf("Clothing", "Entertainment", "Food", "Fuel", "Groceries", "Health", "Housing", "Internet", "Insurance")
         )
-        spPayment.adapter = ArrayAdapter(
+        paymentMethod.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             listOf("Cash", "Credit Card", "Debit Card")
@@ -94,17 +118,23 @@ class CreateTransactionFragment : Fragment() {
         etDate.setOnClickListener { showDatePicker(etDate) }
         etStartTime.setOnClickListener { showTimePicker(etStartTime) }
         etEndTime.setOnClickListener { showTimePicker(etEndTime) }
+        // Date picker
+        dateOfTransaction.setOnClickListener { showDatePicker(dateOfTransaction) }
+
+        // Time pickers
+        startTime.setOnClickListener { showTimePicker(startTime) }
+        endTime.setOnClickListener   { showTimePicker(endTime) }
 
         btnAdd.setOnClickListener {
-            val title    = etTitle.text.toString().trim()
-            val type     = spType.selectedItem as String
-            val amount   = etAmount.text.toString().toDoubleOrNull() ?: 0.0
-            val category = spCategory.selectedItem as String
-            val payment  = spPayment.selectedItem as String
-            val date     = etDate.text.toString()
-            val start    = etStartTime.text.toString()
-            val end      = etEndTime.text.toString()
-            val desc     = etDescription.text.toString().trim()
+            val title    = title.text.toString().trim()
+            val type     = transactionType.selectedItem as String
+            val amount   = amount.text.toString().toDoubleOrNull() ?: 0.0
+            val category = category.selectedItem as String
+            val payment  = paymentMethod.selectedItem as String
+            val date     = dateOfTransaction.text.toString()
+            val start    = startTime.text.toString()
+            val end      = endTime.text.toString()
+            val desc     = description.text.toString().trim()
 
             if (title.isEmpty() || amount <= 0.0 || date.isEmpty()) {
                 Toast.makeText(requireContext(),
