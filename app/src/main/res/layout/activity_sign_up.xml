@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".Sign_up">
+    tools:context=".Sign_up"
+    android:background="@drawable/back">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,28 +18,56 @@
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:id="@+id/Sign_up_email"
         android:autofillHints=""
-
+        android:background="@drawable/vector_textbox"
         android:hint="@string/email"
-        tools:ignore="TextFields" />
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:id="@+id/Sign_up_password"
-        android:autofillHints=""
-        android:hint="@string/Password"
-        app:passwordToggleEnabled="true"/>
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:id="@+id/Sign_up_password_confirm"
-        android:autofillHints=""
-        android:hint="@string/comform_password"
-        app:passwordToggleEnabled="true" />
+        tools:ignore="TextFields"
+        android:layout_margin="10dp"
+        android:paddingStart="10sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingStart="10sp"
+        app:passwordToggleEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:id="@+id/Sign_up_password"
+            android:autofillHints=""
+            android:hint="@string/Password"
+            android:background="@drawable/vector_textbox"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingStart="10sp"
+        app:passwordToggleEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:id="@+id/Sign_up_password_confirm"
+            android:autofillHints=""
+            android:hint="@string/comform_password"
+            android:background="@drawable/vector_textbox"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -51,5 +80,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/Sign_up_login"
         android:text="@string/already_have_an_account_login"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:layout_margin="20dp"/>
 </LinearLayout>
