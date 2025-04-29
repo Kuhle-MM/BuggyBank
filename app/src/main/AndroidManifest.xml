@@ -21,10 +21,12 @@
         <activity
             android:name=".Sign_in"
 
+
             android:name=".menubar"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+
 
             android:exported="true">
             <intent-filter>

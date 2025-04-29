@@ -31,4 +31,14 @@
     <string name="comform_password">Comform Password</string>
     <string name="Welcome_User">Welcome\nUser</string>
 
+    <string name="my_wallet">My Wallet</string>
+    <string name="r_1000_00">R 1000 .00</string>
+    <string name="expense">+_expense</string>
+    <string name="Viewexpense">View Expense</string>
+    <string name="Addexpense">Add Expense</string>
+    <string name="analysis">Analysis</string>
+    <string name="Income">Income vs Expense</string>
+    <string name="graph">Graph</string>
+    <string name="ViewReport">View Report</string>
+
 </resources>
