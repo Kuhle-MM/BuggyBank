@@ -30,9 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".Sign_in"
-
-
-            android:name=".menubar"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -55,9 +52,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"></activity>
 
 
         <meta-data
