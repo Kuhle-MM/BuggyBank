@@ -11,15 +11,16 @@
         android:id="@+id/rvReportList"
         android:layout_width="409dp"
         android:layout_height="529dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvReportHeading"
-        android:layout_width="408dp"
-        android:layout_height="43dp"
+        android:layout_width="404dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="12dp"
         android:background="#A0D683"
         android:fontFamily="@font/chakra_petch_bold"
@@ -30,18 +31,18 @@
         android:textSize="29sp"
         app:layout_constraintBottom_toTopOf="@+id/rvReportList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934" />
+        app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="71dp"
-        android:layout_height="58dp"
-        android:onClick="DownloadClick"
-        android:src="@drawable/rounded_download_24"
-        android:contentDescription="createPDF"
+    <Button
+        android:id="@+id/btnDownloadPDF"
+        android:layout_width="128dp"
+        android:layout_height="62dp"
+        android:text="Download"
+        android:onClick="createPDF"
         app:layout_constraintBottom_toTopOf="@+id/tvReportHeading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.952"
