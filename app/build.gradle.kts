@@ -34,9 +34,17 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding = true
     }
+
+    //added this
+    buildFeatures{
+        viewBinding=true
+    }
+
+
 }
 
 dependencies {
@@ -55,4 +63,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    //implementations for charts
+    implementation(libs.williamchart)
+    implementation(libs.mpandroidchart)
 }

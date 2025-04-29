@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ReportFragment">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReportList"
+        android:layout_width="409dp"
+        android:layout_height="529dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvReportHeading"
+        android:layout_width="408dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="12dp"
+        android:background="#A0D683"
+        android:fontFamily="@font/chakra_petch_bold"
+        android:gravity="center_horizontal"
+        android:text="Report"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="29sp"
+        app:layout_constraintBottom_toTopOf="@+id/rvReportList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.934" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="71dp"
+        android:layout_height="58dp"
+        android:onClick="DownloadClick"
+        android:src="@drawable/rounded_download_24"
+        android:contentDescription="createPDF"
+        app:layout_constraintBottom_toTopOf="@+id/tvReportHeading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
