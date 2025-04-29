@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "170777207556",
+    "firebase_url": "https://buggybank-eb7bf-default-rtdb.firebaseio.com",
+    "project_id": "buggybank-eb7bf",
+    "storage_bucket": "buggybank-eb7bf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170777207556:android:90fc1c94f68677acc46651",
+        "android_client_info": {
+          "package_name": "vcmsa.projects.buggybank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDViQ2GHRstfisE4EetPubA9bRnrvl651w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170777207556:android:7a97db760062ae5ac46651",
+        "android_client_info": {
+          "package_name": "vcmsa.projects.loginfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDViQ2GHRstfisE4EetPubA9bRnrvl651w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
