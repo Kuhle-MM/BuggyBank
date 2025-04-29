@@ -31,10 +31,13 @@
         <activity
             android:name=".Sign_in"
             android:exported="false" />
+
+        <activity
+            android:name=".menubar"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
-
-
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
