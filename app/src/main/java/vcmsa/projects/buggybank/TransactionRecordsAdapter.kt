@@ -7,8 +7,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TransactionAdapter(private val transactions: List<Transaction>) :
-RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+class TransactionRecordsAdapter(private val transactions: List<Transaction>) :
+RecyclerView.Adapter<TransactionRecordsAdapter.TransactionViewHolder>() {
 
     inner class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvName)
@@ -18,10 +18,10 @@ RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
         val tvDate: EditText = itemView.findViewById(R.id.tvDate)
         val tvTransactionType: TextView = itemView.findViewById(R.id.tvTransactionType)
         val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
-        val tvStartTime: TextView = itemView.findViewById(R.id.tvStartTime)
-        val tvEndTime: TextView = itemView.findViewById(R.id.tvEndTime)
+        val tvStartDate: TextView = itemView.findViewById(R.id.tvExpStartDate)
+        val tvEndDate: TextView = itemView.findViewById(R.id.tvExpEndDate)
 
-        val expandedLayout: View = itemView.findViewById(R.id.expandedLayout)
+        val expandedLayout: View = itemView.findViewById(R.id.cvExpandedTransaction)
 
 
     }
@@ -42,8 +42,12 @@ RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
         holder.tvTransactionType.text = transaction.transactionType
         holder.tvDescription.text = transaction.description
-        holder.tvStartTime.text = transaction.startTime
-        holder.tvEndTime.text = transaction.endTime
+        holder.tvStartDate.text = transaction.startTime.toString()
+        holder.tvEndDate.text = transaction.endTime.toString()
+
+        //NOT A REAL CHANGE
+
+
 
         //For the extended view
         holder.expandedLayout.visibility = if (transaction.isExpanded) View.VISIBLE else View.GONE

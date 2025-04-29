@@ -63,7 +63,7 @@
         android:id="@+id/main_profile"
         android:layout_gravity="center"
         android:layout_weight="3"
-        android:background="@drawable/circle_shape"
+        android:background="@drawable/small_circle"
         android:importantForAccessibility="yes"
         android:layout_margin="18dp"
         />
