@@ -7,5 +7,6 @@ data class Expense(
     val date: String,
     val startTime: String,
     val endTime: String,
-    val description: String
+    val description: String,
+    val imagePath: String? = null
 )
