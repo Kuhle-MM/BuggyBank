@@ -26,20 +26,7 @@ class TransactionRecords : Fragment() {
     ): View? {
 
 
-        val layout = inflater.inflate(R.layout.fragment_second, container, false)
-        val edtInput: EditText = layout.findViewById(R.id.edtInput)
-        val btnPressMe: Button = layout.findViewById(R.id.btnFrag2)
-        val tvOutput: TextView = layout.findViewById(R.id.tvOutput)
-
-//        btnPressMe.setOnHoverListener{
-//            btnPressMe.setBackgroundResource(R.color.white)
-//        }
-
-        btnPressMe.setOnClickListener {
-            tvOutput.text = edtInput.text
-//            btnPressMe.setBackgroundColor()
-            edtInput.text.clear()
-        }
+        val layout = inflater.inflate(R.layout.fragment_transaction_records, container, false)
 
 
         return layout

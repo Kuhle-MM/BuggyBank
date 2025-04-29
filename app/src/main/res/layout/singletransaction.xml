@@ -35,10 +35,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="72dp"
-                android:layout_marginTop="16dp"
-                android:text="test"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="text"
+                android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.329"
+                app:layout_constraintHorizontal_bias="0.383"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
