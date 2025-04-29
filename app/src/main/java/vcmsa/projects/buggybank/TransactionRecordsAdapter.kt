@@ -45,6 +45,10 @@ RecyclerView.Adapter<TransactionRecordsAdapter.TransactionViewHolder>() {
         holder.tvStartDate.text = transaction.startTime.toString()
         holder.tvEndDate.text = transaction.endTime.toString()
 
+        //NOT A REAL CHANGE
+
+
+
         //For the extended view
         holder.expandedLayout.visibility = if (transaction.isExpanded) View.VISIBLE else View.GONE
 
