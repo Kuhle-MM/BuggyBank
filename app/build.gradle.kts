@@ -35,6 +35,17 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    //added this
+    buildFeatures{
+        viewBinding=true
+    }
+
+
 }
 
 
@@ -56,4 +67,16 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.database)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    //implementations for charts
+    implementation(libs.williamchart)
+    implementation(libs.mpandroidchart)
 }
