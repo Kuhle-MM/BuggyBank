@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView, CreateTransactionFragment())
+            .replace(R.id.fragmentContainerView, CreateCategoryFragment())
             .commit()
         val intent = Intent(this,menubar::class.java)
         startActivity(intent)
