@@ -41,4 +41,11 @@
     <string name="graph">Graph</string>
     <string name="ViewReport">View Report</string>
 
+    <!-- strings.xml -->
+    <string name="buggy_bank">
+        BUGGY BANK
+    </string>
+    <string name="Sign_Up">Sign Up</string>
+    <string name="forgot_your_password">Forgot Your Password?</string>
+    <string name="submit">Submit</string>
 </resources>
