@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
-    //var reportArray =ArrayList<ReportDB>()
+    var reportArray =ArrayList<ReportDB>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, CreateTransactionFragment())
             .commit()
-       // val intent = Intent(this,menubar::class.java)
+        val intent = Intent(this,menubar::class.java)
         startActivity(intent)
 
     }
