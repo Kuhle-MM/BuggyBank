@@ -24,8 +24,6 @@ firebaseDatabaseKtx = "21.0.0"
 
 williamchart = "3.10.1"
 mpandroidchart = "v3.1.0"
-googleGmsGoogleServices = "4.4.2"
-firebaseDatabase = "21.0.0"
 
 
 [libraries]
@@ -51,7 +49,7 @@ firebase-database-ktx = { group = "com.google.firebase", name = "firebase-databa
 
 williamchart = { group = "com.diogobernardino", name = "williamchart", version.ref = "williamchart" }
 mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
-firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+
 
 
 [plugins]
