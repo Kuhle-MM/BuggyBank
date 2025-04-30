@@ -34,18 +34,20 @@ class CreateTransactionFragment : Fragment() {
     private lateinit var btnAddImage: FrameLayout
     private lateinit var imagePreview: ImageView
     private var imageUri: Uri? = null
-
-    private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        uri?.let {
-            imageUri = it
-            imagePreview.setImageURI(it)
+   
+    private val galleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                imageUri = it
+                imagePreview.setImageURI(it)
+            }
         }
-    }
-    private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-        if (success && imageUri != null) {
-            imagePreview.setImageURI(imageUri)
+    private val cameraLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success && imageUri != null) {
+                imagePreview.setImageURI(imageUri)
+            }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,19 +58,19 @@ class CreateTransactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        etTitle       = view.findViewById(R.id.etTitle)
-        spType        = view.findViewById(R.id.spType)
-        etAmount      = view.findViewById(R.id.etAmount)
-        spCategory    = view.findViewById(R.id.spCategory)
-        spPayment     = view.findViewById(R.id.spPayment)
-        etDate        = view.findViewById(R.id.etDate)
-        etStartTime   = view.findViewById(R.id.etStartTime)
-        etEndTime     = view.findViewById(R.id.etEndTime)
+        etTitle = view.findViewById(R.id.etTitle)
+        spType = view.findViewById(R.id.spType)
+        etAmount = view.findViewById(R.id.etAmount)
+        spCategory = view.findViewById(R.id.spCategory)
+        spPayment = view.findViewById(R.id.spPayment)
+        etDate = view.findViewById(R.id.etDate)
+        etStartTime = view.findViewById(R.id.etStartTime)
+        etEndTime = view.findViewById(R.id.etEndTime)
         etDescription = view.findViewById(R.id.editTextDescription)
-        btnAdd        = view.findViewById(R.id.btnAdd)
+        btnAdd = view.findViewById(R.id.btnAdd)
 
-        btnAddImage   = view.findViewById(R.id.btnAddImage)
-        imagePreview  = view.findViewById(R.id.imagePreview)
+        btnAddImage = view.findViewById(R.id.btnAddImage)
+        imagePreview = view.findViewById(R.id.imagePreview)
 
         listOf(etDate, etStartTime, etEndTime).forEach {
             it.isFocusable = false
@@ -83,7 +85,20 @@ class CreateTransactionFragment : Fragment() {
         spCategory.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
-            listOf("Clothing", "Entertainment", "Food", "Fuel", "Groceries", "Health", "Housing", "Internet", "Insurance")
+            listOf(
+                "Clothing",
+                "Entertainment",
+                "Food",
+                "Fuel",
+                "Groceries",
+                "Health",
+                "Housing",
+                "Internet",
+                "Insurance",
+                "Salary",
+                "Wages",
+                "Investments"
+            )
         )
         spPayment.adapter = ArrayAdapter(
             requireContext(),
@@ -94,22 +109,25 @@ class CreateTransactionFragment : Fragment() {
         etDate.setOnClickListener { showDatePicker(etDate) }
         etStartTime.setOnClickListener { showTimePicker(etStartTime) }
         etEndTime.setOnClickListener { showTimePicker(etEndTime) }
+        btnAddImage.setOnClickListener { showImagePickerDialog()}
 
         btnAdd.setOnClickListener {
-            val title    = etTitle.text.toString().trim()
-            val type     = spType.selectedItem as String
-            val amount   = etAmount.text.toString().toDoubleOrNull() ?: 0.0
+            val title = etTitle.text.toString().trim()
+            val type = spType.selectedItem as String
+            val amount = etAmount.text.toString().toDoubleOrNull() ?: 0.0
             val category = spCategory.selectedItem as String
-            val payment  = spPayment.selectedItem as String
-            val date     = etDate.text.toString()
-            val start    = etStartTime.text.toString()
-            val end      = etEndTime.text.toString()
-            val desc     = etDescription.text.toString().trim()
+            val payment = spPayment.selectedItem as String
+            val date = etDate.text.toString()
+            val start = etStartTime.text.toString()
+            val end = etEndTime.text.toString()
+            val desc = etDescription.text.toString().trim()
 
             if (title.isEmpty() || amount <= 0.0 || date.isEmpty()) {
-                Toast.makeText(requireContext(),
+                Toast.makeText(
+                    requireContext(),
                     "Please fill Title, Amount & Date",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
@@ -118,17 +136,24 @@ class CreateTransactionFragment : Fragment() {
                 date, start, end, desc, imageUri?.path
             )
 
+
+
             val dbRef = FirebaseDatabase.getInstance().getReference("transactions")
             val newTransactionId = dbRef.push().key
 
             if (newTransactionId != null) {
                 dbRef.child(newTransactionId).setValue(expense)
                     .addOnSuccessListener {
-                        Toast.makeText(requireContext(), "Transaction saved", Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(requireContext(), "Transaction saved", Toast.LENGTH_SHORT)
+                            .show()
+                        clearForm()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(requireContext(), "Failed to save transaction", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Failed to save transaction",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
             } else {
                 Toast.makeText(requireContext(), "Failed to generate ID", Toast.LENGTH_SHORT).show()
@@ -204,6 +229,20 @@ class CreateTransactionFragment : Fragment() {
             e.printStackTrace()
             null
         }
+    }
+
+    private fun clearForm() {
+        etTitle.text.clear()
+        etAmount.text.clear()
+        etDate.text.clear()
+        etStartTime.text.clear()
+        etEndTime.text.clear()
+        etDescription.text.clear()
+        spType.setSelection(0)
+        spCategory.setSelection(0)
+        spPayment.setSelection(0)
+        imageUri = null
+        imagePreview.setImageDrawable(null)
     }
 
 }
