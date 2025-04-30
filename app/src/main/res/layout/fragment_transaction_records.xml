@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TransactionRecords">
+    tools:context=".TransactionRecords"><!--must be changed to the home page-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rwTransactions"
-            android:layout_width="0dp"
-            android:layout_height="520dp"
+            android:id="@+id/rvTransactions"
+            android:layout_width="367dp"
+            android:layout_height="516dp"
             android:layout_marginStart="21dp"
             android:layout_marginEnd="21dp"
             app:layout_constraintBottom_toBottomOf="parent"
