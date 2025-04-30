@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import vcmsa.projects.buggybank.databinding.ActivityMainBinding
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
     
@@ -20,11 +21,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+        FirebaseApp.initializeApp(this)
+        setContentView(R.layout.activity_main)
+        enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerView, CreateCategoryFragment())
+            .commit()
         val intent = Intent(this,menubar::class.java)
         startActivity(intent)
         
@@ -46,6 +53,14 @@ class MainActivity : AppCompatActivity() {
     
     
 }
+
+    //   docsFolder.mkdirs()
+
+val pdfReportDocument = PdfDocument()
+val reportInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
+val page = pdfReportDocument.startPage(reportInfo)
+val canvas = page.canvas
+val paint = Paint()
 //val pdfReportDocument = PdfDocument()
 //val reportInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
 //val page: PdfDocument.Page = pdfReportDocument.startPage(reportInfo)
