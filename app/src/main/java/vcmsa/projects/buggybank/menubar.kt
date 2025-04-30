@@ -68,7 +68,7 @@ class menubar : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun createPDF() {
+    fun createPDF(transactions: List<Transaction>) {
         val pdfDocument = PdfDocument()
         val pageInfo = PdfDocument.PageInfo.Builder(300, 600, 1).create()
         val page = pdfDocument.startPage(pageInfo)
@@ -79,14 +79,10 @@ class menubar : AppCompatActivity() {
         var y = 30f
         canvas.drawText("BuggyBank Expense Report", 10f, y, paint)
         y += 20f
-
-        for (report in reportArray) {
-            canvas.drawText("Name: ${report.Title}", 10f, y, paint)
-            y += 15f
-            canvas.drawText("Amount: R${report.Amount}", 10f, y, paint)
-            y += 15f
-            canvas.drawText("Date: ${report.Date}", 10f, y, paint)
-            y += 30f
+        //loop each transaction within db
+        transactions.forEach {
+            canvas.drawText("${it.dateOfTransaction}: ${it.description} - R${it.amount}", 10f, y, paint)
+            y += 20
         }
 
         pdfDocument.finishPage(page)
