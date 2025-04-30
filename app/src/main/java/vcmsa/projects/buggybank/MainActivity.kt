@@ -10,13 +10,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import vcmsa.projects.buggybank.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -24,17 +27,30 @@ class MainActivity : AppCompatActivity() {
         }
         val intent = Intent(this,menubar::class.java)
         startActivity(intent)
+        
+        binding.btnSignUp.setOnClickListener {
+            val intent = Intent(this,Sign_up::class.java)
+            startActivity(intent)
+        }
+        binding.btnlogin.setOnClickListener {
+            val intent = Intent(this,Sign_in::class.java)
+            startActivity(intent)
+        }
+        binding.vForgotPassword.setOnClickListener {
+            val intent = Intent(this,ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
     
     
 }
-val pdfReportDocument = PdfDocument()
-val reportInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
-val page: PdfDocument.Page = pdfReportDocument.startPage(reportInfo)
-val canvas: Canvas = page.canvas
-val paint = Paint()
+//val pdfReportDocument = PdfDocument()
+//val reportInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
+//val page: PdfDocument.Page = pdfReportDocument.startPage(reportInfo)
+//val canvas: Canvas = page.canvas
+//val paint = Paint()
 //size of paint
 
 //   fun createPDF (view: View)
