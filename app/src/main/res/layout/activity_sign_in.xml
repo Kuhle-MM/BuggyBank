@@ -57,7 +57,16 @@
         android:textSize="18sp"/>
 </com.google.android.material.textfield.TextInputLayout>
 
-
+    <TextView
+        android:id="@+id/vForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_your_password"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/chakra_petch"/>
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="50dp"
