@@ -1,7 +1,6 @@
 package vcmsa.projects.buggybank
 
 import android.content.Intent
-import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 

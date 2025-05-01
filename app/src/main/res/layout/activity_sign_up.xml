@@ -8,7 +8,7 @@
     android:background="@drawable/back"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Sign_up">
+    tools:context=".SignUp">
 
     <TextView
         android:id="@+id/Sign_in_text"
@@ -20,10 +20,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.412" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.707">
 
         <EditText
-            android:id="@+id/Sign_up_email"
+            android:id="@+id/sign_up_email"
             android:layout_width="304dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
@@ -140,11 +140,28 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="Sign_in_text" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:autofillHints=""
+        android:background="@drawable/vector_textbox"
+        android:hint="@string/Username"
+        android:paddingStart="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        tools:ignore="TextFields" />
 </androidx.constraintlayout.widget.ConstraintLayout>

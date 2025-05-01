@@ -19,9 +19,8 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class CreateTransactionFragment : Fragment() {
-
+    
     private lateinit var etTitle: EditText
     private lateinit var spType: Spinner
     private lateinit var etAmount: EditText
@@ -31,20 +30,11 @@ class CreateTransactionFragment : Fragment() {
     private lateinit var etStartTime: EditText
     private lateinit var etEndTime: EditText
     private lateinit var etDescription: EditText
-    private lateinit var title: EditText
-    private lateinit var transactionType: Spinner
-    private lateinit var amount: EditText
-    private lateinit var category: Spinner
-    private lateinit var paymentMethod: Spinner
-    private lateinit var dateOfTransaction: EditText
-    private lateinit var startTime: EditText
-    private lateinit var endTime: EditText
-    private lateinit var description: EditText
     private lateinit var btnAdd: Button
     private lateinit var btnAddImage: FrameLayout
     private lateinit var imagePreview: ImageView
     private var imageUri: Uri? = null
-   
+    
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
@@ -56,19 +46,19 @@ class CreateTransactionFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
             if (success && imageUri != null) {
                 imagePreview.setImageURI(imageUri)
+                
             }
         }
-
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_create_transaction, container, false)
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         etTitle = view.findViewById(R.id.etTitle)
         spType = view.findViewById(R.id.spType)
         etAmount = view.findViewById(R.id.etAmount)
@@ -79,28 +69,15 @@ class CreateTransactionFragment : Fragment() {
         etEndTime = view.findViewById(R.id.etEndTime)
         etDescription = view.findViewById(R.id.editTextDescription)
         btnAdd = view.findViewById(R.id.btnAdd)
-
+        
         btnAddImage = view.findViewById(R.id.btnAddImage)
         imagePreview = view.findViewById(R.id.imagePreview)
-        title = view.findViewById(R.id.etTitle)
-        transactionType = view.findViewById(R.id.spType)
-        amount = view.findViewById(R.id.etAmount)
-        category = view.findViewById(R.id.spCategory)
-        paymentMethod = view.findViewById(R.id.spPayment)
-        dateOfTransaction = view.findViewById(R.id.etDate)
-        startTime = view.findViewById(R.id.etStartTime)
-        endTime = view.findViewById(R.id.etEndTime)
-        description = view.findViewById(R.id.editTextDescription)
-        btnAdd = view.findViewById(R.id.btnAdd)
-
-        btnAddImage   = view.findViewById(R.id.btnAddImage)
-        imagePreview  = view.findViewById(R.id.imagePreview)
-
-        listOf(dateOfTransaction, startTime, endTime).forEach {
+        
+        listOf(etDate, etStartTime, etEndTime).forEach {
             it.isFocusable = false
             it.isClickable = true
         }
-
+        
         spType.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
@@ -129,13 +106,12 @@ class CreateTransactionFragment : Fragment() {
             android.R.layout.simple_spinner_dropdown_item,
             listOf("Cash", "Credit Card", "Debit Card")
         )
-
-
+        
         etDate.setOnClickListener { showDatePicker(etDate) }
         etStartTime.setOnClickListener { showTimePicker(etStartTime) }
         etEndTime.setOnClickListener { showTimePicker(etEndTime) }
         btnAddImage.setOnClickListener { showImagePickerDialog()}
-
+        
         btnAdd.setOnClickListener {
             val title = etTitle.text.toString().trim()
             val type = spType.selectedItem as String
@@ -146,24 +122,7 @@ class CreateTransactionFragment : Fragment() {
             val start = etStartTime.text.toString()
             val end = etEndTime.text.toString()
             val desc = etDescription.text.toString().trim()
-        // Date picker
-        dateOfTransaction.setOnClickListener { showDatePicker(dateOfTransaction) }
-
-        // Time pickers
-        startTime.setOnClickListener { showTimePicker(startTime) }
-        endTime.setOnClickListener   { showTimePicker(endTime) }
-
-        btnAdd.setOnClickListener {
-            val title    = title.text.toString().trim()
-            val type     = transactionType.selectedItem as String
-            val amount   = amount.text.toString().toDoubleOrNull() ?: 0.0
-            val category = category.selectedItem as String
-            val payment  = paymentMethod.selectedItem as String
-            val date     = dateOfTransaction.text.toString()
-            val start    = startTime.text.toString()
-            val end      = endTime.text.toString()
-            val desc     = description.text.toString().trim()
-
+            
             if (title.isEmpty() || amount <= 0.0 || date.isEmpty()) {
                 Toast.makeText(
                     requireContext(),
@@ -172,17 +131,17 @@ class CreateTransactionFragment : Fragment() {
                 ).show()
                 return@setOnClickListener
             }
-
+            
             val expense = Expense(
                 title, type, amount, category, payment,
                 date, start, end, desc, imageUri?.path
             )
-
-
-
+            
+            
+            
             val dbRef = FirebaseDatabase.getInstance().getReference("transactions")
             val newTransactionId = dbRef.push().key
-
+            
             if (newTransactionId != null) {
                 dbRef.child(newTransactionId).setValue(expense)
                     .addOnSuccessListener {
@@ -201,9 +160,9 @@ class CreateTransactionFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed to generate ID", Toast.LENGTH_SHORT).show()
             }
         }
-
+        
     }
-
+    
     private fun showDatePicker(target: EditText) {
         val cal = Calendar.getInstance()
         DatePickerDialog(
@@ -218,7 +177,7 @@ class CreateTransactionFragment : Fragment() {
             cal.get(Calendar.DAY_OF_MONTH)
         ).show()
     }
-
+    
     private fun showTimePicker(target: EditText) {
         val cal = Calendar.getInstance()
         TimePickerDialog(
@@ -231,7 +190,7 @@ class CreateTransactionFragment : Fragment() {
             true
         ).show()
     }
-
+    
     private fun showImagePickerDialog() {
         val options = arrayOf("Take Photo", "Choose from Gallery")
         AlertDialog.Builder(requireContext())
@@ -244,11 +203,11 @@ class CreateTransactionFragment : Fragment() {
             }
             .show()
     }
-
+    
     private fun pickFromGallery() {
         galleryLauncher.launch("image/*")
     }
-
+    
     private fun takePhoto() {
         val photoFile = createImageFile()
         photoFile?.let {
@@ -260,7 +219,7 @@ class CreateTransactionFragment : Fragment() {
             cameraLauncher.launch(imageUri)
         }
     }
-
+    
     private fun createImageFile(): File? {
         return try {
             val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -272,7 +231,7 @@ class CreateTransactionFragment : Fragment() {
             null
         }
     }
-
+    
     private fun clearForm() {
         etTitle.text.clear()
         etAmount.text.clear()
@@ -286,5 +245,5 @@ class CreateTransactionFragment : Fragment() {
         imageUri = null
         imagePreview.setImageDrawable(null)
     }
-
+    
 }
