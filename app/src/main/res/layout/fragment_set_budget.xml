@@ -161,13 +161,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtMinimumHeading"
+        android:id="@+id/txtMaximumHeading"
         android:layout_width="136dp"
         android:layout_height="30dp"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="124dp"
         android:fontFamily="@font/chakra_petch_light"
-        android:text="MINIMUM BUDGET : "
+        android:text="MAXIMUM BUDGET : "
         android:textAllCaps="true"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/btnSet"
@@ -203,12 +203,12 @@
         android:layout_height="28dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/chakra_petch"
-        android:text=" :"
+        android:text=""
         android:textAllCaps="true"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtMinimumHeading"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaximumHeading"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent" />
 
     <SeekBar
@@ -223,7 +223,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddCategory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtMinimumHeading" />
+        app:layout_constraintStart_toEndOf="@+id/txtMaximumHeading" />
 
     <TextView
         android:id="@+id/txtSeekValue"
