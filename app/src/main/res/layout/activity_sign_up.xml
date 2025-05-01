@@ -20,10 +20,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.412" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.707">
 
         <EditText
-            android:id="@+id/Sign_up_email"
+            android:id="@+id/sign_up_email"
             android:layout_width="304dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="TextFields" />
+            tools:ignore="RtlSymmetry,TextFields" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -65,7 +65,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.48"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            tools:ignore="RtlSymmetry">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Sign_up_password"
@@ -90,7 +91,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            tools:ignore="RtlSymmetry">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Sign_up_password_confirm"
@@ -98,7 +100,7 @@
                 android:layout_height="50dp"
                 android:autofillHints=""
                 android:background="@drawable/vector_textbox"
-                android:hint="@string/comform_password"
+                android:hint="@string/conform_password"
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -135,16 +137,34 @@
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:background="@mipmap/logo"
+        android:contentDescription="@string/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="Sign_in_text" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:autofillHints=""
+        android:background="@drawable/vector_textbox"
+        android:hint="@string/Username"
+        android:paddingStart="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        tools:ignore="RtlSymmetry,TextFields" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,8 +12,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,7 +21,8 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.BuggyBank"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
@@ -32,21 +31,26 @@
             android:exported="false" />
         <activity
             android:name=".Sign_in"
-            android:exported="false" />
-
-        <activity
-            android:name=".menubar"
-
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+
+
+
+        <activity
+            android:name=".menubar"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
         </activity>
 
 
