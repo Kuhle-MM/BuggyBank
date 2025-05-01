@@ -8,7 +8,7 @@
     android:background="@drawable/back"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SignUp">
+    tools:context=".Sign_up">
 
     <TextView
         android:id="@+id/Sign_in_text"

@@ -1,3 +1,5 @@
+@file:Suppress("Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator")
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -50,23 +52,14 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.support.annotations)
+    
     implementation(libs.firebase.database)
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation(libs.firebase.auth)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.androidx.annotation)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.firebase.auth)
     implementation("com.google.android.gms:play-services-auth:20.7.0")
-    implementation(libs.williamchart)
     implementation(libs.mpandroidchart)
     
     testImplementation(libs.junit)
