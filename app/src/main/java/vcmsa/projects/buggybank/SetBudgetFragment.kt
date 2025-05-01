@@ -5,6 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.SeekBar
+import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,9 +39,69 @@ class SetBudgetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_set_budget, container, false)
+
+        // Inflate the layout
+        val view = inflater.inflate(R.layout.fragment_set_budget, container, false)
+
+        val seekBar = view.findViewById<SeekBar>(R.id.seekBarMin)
+        val txtSeekValue = view.findViewById<TextView>(R.id.txtSeekValue)
+        // Now safely access views from the inflated layout
+        val changingHeading = view.findViewById<TextView>(R.id.txtHeadingChange)
+
+        val btnEntertainment = view.findViewById<Button>(R.id.btnEntertainment)
+        val btnHealth = view.findViewById<Button>(R.id.btnHealth)
+        val btnHousing = view.findViewById<Button>(R.id.btnHousing)
+        val btnClothing = view.findViewById<Button>(R.id.btnClothing)
+        val btnFood = view.findViewById<Button>(R.id.btnFood)
+        val btnFuel = view.findViewById<Button>(R.id.btnFuel)
+        val btnGroceries = view.findViewById<Button>(R.id.btnGroceries)
+        val btnInsurance = view.findViewById<Button>(R.id.btnInsurance)
+        val btnInternet = view.findViewById<Button>(R.id.btnInternet)
+
+        val btnSetCatMinimum = view.findViewById<Button>(R.id.btnSet)
+
+        // Set heading text when buttons are clicked
+        btnEntertainment.setOnClickListener { changingHeading.text = "ENTERTAINMENT" }
+        btnHealth.setOnClickListener { changingHeading.text = "HEALTH" }
+        btnHousing.setOnClickListener { changingHeading.text = "HOUSING" }
+        btnClothing.setOnClickListener { changingHeading.text = "CLOTHING" }
+        btnFood.setOnClickListener { changingHeading.text = "FOOD" }
+        btnFuel.setOnClickListener { changingHeading.text = "FUEL" }
+        btnGroceries.setOnClickListener { changingHeading.text = "GROCERIES" }
+        btnInsurance.setOnClickListener { changingHeading.text = "INSURANCE" }
+        btnInternet.setOnClickListener { changingHeading.text = "INTERNET" }
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                txtSeekValue.text = "R$progress"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+        btnSetCatMinimum.setOnClickListener {
+            val selectedCategory = changingHeading.text.toString()
+            val minValue = seekBar.progress
+
+            if (selectedCategory.isNotEmpty()) {
+                val budget = Budget(category = selectedCategory, minimumValue = minValue)
+
+                val dbRef = FirebaseDatabase.getInstance().getReference("Budgets")
+                dbRef.push().setValue(budget)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Budget saved!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(), "Failed to save", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(requireContext(), "Select a category first", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return view
     }
+
 
     companion object {
         /**

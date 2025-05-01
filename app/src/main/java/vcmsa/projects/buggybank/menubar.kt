@@ -19,6 +19,7 @@ import java.io.FileOutputStream
 
 private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
+private val FragSetABudget = SetBudgetFragment()
 
 class menubar : AppCompatActivity() {
 
@@ -51,12 +52,12 @@ class menubar : AppCompatActivity() {
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_home, R.id.ic_create, R.id.ic_trophies -> replaceFrag(FragAnalysis)
+                R.id.ic_home, R.id.ic_trophies -> replaceFrag(FragAnalysis)
                 R.id.ic_analysis, R.id.ic_transactions -> {
                     replaceFrag(FragReport)
                    // createPDF()
-
-                }
+                    }
+                R.id.ic_create -> replaceFrag(FragSetABudget)
             }
             true
         }
