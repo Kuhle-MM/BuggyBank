@@ -24,10 +24,6 @@ firebaseDatabaseKtx = "21.0.0"
 
 williamchart = "3.10.1"
 mpandroidchart = "v3.1.0"
-credentials = "1.5.0"
-credentialsPlayServicesAuth = "1.5.0"
-googleid = "1.1.1"
-
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,9 +48,6 @@ firebase-database-ktx = { group = "com.google.firebase", name = "firebase-databa
 
 williamchart = { group = "com.diogobernardino", name = "williamchart", version.ref = "williamchart" }
 mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
-androidx-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
-androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
-googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 
 
 [plugins]
