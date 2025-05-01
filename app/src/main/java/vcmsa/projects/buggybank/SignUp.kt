@@ -1,33 +1,36 @@
 package vcmsa.projects.buggybank
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
 
 
 class Sign_up : AppCompatActivity() {
+    
+    private lateinit var auth: FirebaseAuth
 
-    private lateinit var auth: FirebaseAuth;
     private lateinit var binding: ActivitySignUpBinding
+    private lateinit var databaseReference: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().reference
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -41,6 +44,7 @@ class Sign_up : AppCompatActivity() {
             val email = binding.signUpEmail.text.toString()
             val password = binding.SignUpPassword.text.toString()
             val passwordConfirm = binding.SignUpPasswordConfirm.text.toString()
+            val username = binding.username.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty()) {
 
@@ -95,6 +99,7 @@ class Sign_up : AppCompatActivity() {
                                 "Sign up failed: ${e.message}",
                                 Toast.LENGTH_LONG
                             ).show()
+
                         }
                     }
 
