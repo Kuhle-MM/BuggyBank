@@ -47,4 +47,6 @@
     <string name="Sign_Up">Sign Up</string>
     <string name="forgot_your_password">Forgot Your Password?</string>
     <string name="submit">Submit</string>
+    <string name="logo">Logo</string>
+    <string name="conform_password">Confirm Password</string>
 </resources>

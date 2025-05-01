@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.2"
+firebaseBom = "33.13.0"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -14,6 +15,7 @@ googleGmsGoogleServices = "4.3.15"
 firebaseDatabase = "21.0.0"
 firebaseAuth = "23.2.0"
 
+playServicesAuth = "20.7.0"
 williamchart = "3.10.1"
 mpandroidchart = "v3.1.0"
 roomCompiler = "2.7.1"
@@ -23,6 +25,7 @@ screenshotValidationJunitEngine = "0.0.1-alpha09"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -34,6 +37,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 williamchart = { group = "com.diogobernardino", name = "williamchart", version.ref = "williamchart" }
 mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
