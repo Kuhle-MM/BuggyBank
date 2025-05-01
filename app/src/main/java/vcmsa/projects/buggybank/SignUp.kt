@@ -13,7 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
+
 
 class Sign_up : AppCompatActivity() {
     
@@ -22,7 +25,6 @@ class Sign_up : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
@@ -36,29 +38,41 @@ class Sign_up : AppCompatActivity() {
             startActivity(intent)
         }
         binding.SignUpButton.setOnClickListener {
-            val email = binding.SignUpEmail.text.toString()
+            val email = binding.signUpEmail.text.toString()
             val password = binding.SignUpPassword.text.toString()
             val passwordConfirm = binding.SignUpPasswordConfirm.text.toString()
+            
             if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty()) {
+                
                 if (password == passwordConfirm) {
-                    
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
-                        if (it.isSuccessful) {
-                            val intent = Intent(this@Sign_up, Sign_in::class.java)
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(this@Sign_up, "Sign up failed", Toast.LENGTH_SHORT).show()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            auth.createUserWithEmailAndPassword(email, password).await()
+                            withContext(Dispatchers.Main) {
+                                val intent = Intent(this@Sign_up, Sign_in::class.java)
+                                startActivity(intent)
+                            }
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@Sign_up, "Sign up failed", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                        
-                        }
-                    }else {
-                        Toast.makeText(this@Sign_up, "Passwords do not match", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(this@Sign_up, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Sign_up, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 }
+            } else if (!password.any { it in "@#$%^&*" }) {
+                Toast.makeText(this@Sign_up, "Password must contain at least one special character", Toast.LENGTH_SHORT).show()
+            } else if (!password.any { it.isDigit() }) {
+                Toast.makeText(this@Sign_up, "Password must contain at least one number", Toast.LENGTH_SHORT).show()
+            } else if (!password.any { it.isUpperCase() }) {
+                Toast.makeText(this@Sign_up, "Password must contain at least one uppercase letter", Toast.LENGTH_SHORT).show()
+            } else if (!email.contains("@")) {
+                Toast.makeText(this@Sign_up, "Email must contain @", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@Sign_up, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
+            
         }
     }
-    
-    
+}
