@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Sign_in_text"
-        android:text="@string/sign_in"
+        android:text="Log in"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"/>
@@ -79,7 +79,7 @@
         android:id="@+id/Sign_in_button"
         android:gravity="center"
         android:layout_marginStart="20dp"
-        android:text="@string/Sign_in"
+        android:text="Log in"
         android:layout_weight="1"
         android:layout_gravity="bottom"
         />

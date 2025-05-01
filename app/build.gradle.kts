@@ -53,7 +53,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.database)
 
-    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation(libs.firebase.auth)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
@@ -63,9 +62,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.androidx.annotation)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+//    implementation(libs.androidx.annotation)
+//    implementation(libs.androidx.lifecycle.livedata.ktx)
+//    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation(libs.firebase.auth)
     testImplementation(libs.junit)

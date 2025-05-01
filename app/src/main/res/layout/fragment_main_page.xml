@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".MainPageFragment"
-    android:fontFamily="@font/chakra_petch">
+    android:fontFamily="@font/chakra_petch"
+    tools:context=".MainPageFragment">
 
     <ImageView
         android:id="@+id/main_image"
@@ -43,14 +44,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:fontFamily="@font/chakra_petch"
         android:text="@string/Welcome_User"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/chakra_petch"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/main_profile"

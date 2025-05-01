@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.core.view.ViewCompat
@@ -35,13 +36,10 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView, CreateCategoryFragment())
-            .commit()
-        val intent = Intent(this,menubar::class.java)
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragmentContainerView, CreateCategoryFragment())
+//            .commit()
 
-        startActivity(intent)
-        
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this,Sign_up::class.java)
             startActivity(intent)
@@ -54,6 +52,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
+
+           val intent = Intent(this,menubar::class.java)
+           startActivity(intent)
 
     }
 }
