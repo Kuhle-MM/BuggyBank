@@ -1,6 +1,9 @@
 package vcmsa.projects.buggybank
 
 import android.content.Intent
+
+import android.graphics.Canvas
+
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 
@@ -9,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 import vcmsa.projects.buggybank.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
 
@@ -52,14 +56,6 @@ class MainActivity : AppCompatActivity() {
     
     
 }
-
-    //   docsFolder.mkdirs()
-
-val pdfReportDocument = PdfDocument()
-val reportInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
-val page = pdfReportDocument.startPage(reportInfo)
-val canvas = page.canvas
-val paint = Paint()
 //val pdfReportDocument = PdfDocument()
 //val reportInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(300,600,1).create()//height and width of the page
 //val page: PdfDocument.Page = pdfReportDocument.startPage(reportInfo)
