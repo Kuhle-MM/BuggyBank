@@ -61,15 +61,15 @@ class SetBudgetFragment : Fragment() {
         val btnSetCatMinimum = view.findViewById<Button>(R.id.btnSet)
 
         // Set heading text when buttons are clicked
-        btnEntertainment.setOnClickListener { changingHeading.text = "ENTERTAINMENT" }
-        btnHealth.setOnClickListener { changingHeading.text = "HEALTH" }
-        btnHousing.setOnClickListener { changingHeading.text = "HOUSING" }
-        btnClothing.setOnClickListener { changingHeading.text = "CLOTHING" }
-        btnFood.setOnClickListener { changingHeading.text = "FOOD" }
-        btnFuel.setOnClickListener { changingHeading.text = "FUEL" }
-        btnGroceries.setOnClickListener { changingHeading.text = "GROCERIES" }
-        btnInsurance.setOnClickListener { changingHeading.text = "INSURANCE" }
-        btnInternet.setOnClickListener { changingHeading.text = "INTERNET" }
+        btnEntertainment.setOnClickListener { changingHeading.text = "Entertainment" }
+        btnHealth.setOnClickListener { changingHeading.text = "Health" }
+        btnHousing.setOnClickListener { changingHeading.text = "Housing" }
+        btnClothing.setOnClickListener { changingHeading.text = "Clothing" }
+        btnFood.setOnClickListener { changingHeading.text = "Food" }
+        btnFuel.setOnClickListener { changingHeading.text = "Fuel" }
+        btnGroceries.setOnClickListener { changingHeading.text = "Groceries" }
+        btnInsurance.setOnClickListener { changingHeading.text = "Insurance" }
+        btnInternet.setOnClickListener { changingHeading.text = "Internet" }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -81,12 +81,12 @@ class SetBudgetFragment : Fragment() {
         })
         btnSetCatMinimum.setOnClickListener {
             val selectedCategory = changingHeading.text.toString()
-            val minValue = seekBar.progress
+            val maxValue = seekBar.progress
 
             if (selectedCategory.isNotEmpty()) {
-                val budget = Budget(category = selectedCategory, minimumValue = minValue)
+                val budget = Budget(category = selectedCategory, maximumValue = maxValue)
 
-                val dbRef = FirebaseDatabase.getInstance().getReference("Budgets")
+                val dbRef = FirebaseDatabase.getInstance().getReference("budgets")
                 dbRef.push().setValue(budget)
                     .addOnSuccessListener {
                         Toast.makeText(requireContext(), "Budget saved!", Toast.LENGTH_SHORT).show()

@@ -2,5 +2,5 @@ package vcmsa.projects.buggybank
 
 data class Budget(
 val category: String = "",
-val minimumValue: Int = 0
+val maximumValue: Int = 0
 )
