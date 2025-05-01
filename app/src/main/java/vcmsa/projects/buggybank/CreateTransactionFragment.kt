@@ -31,20 +31,11 @@ class CreateTransactionFragment : Fragment() {
     private lateinit var etStartTime: EditText
     private lateinit var etEndTime: EditText
     private lateinit var etDescription: EditText
-    private lateinit var title: EditText
-    private lateinit var transactionType: Spinner
-    private lateinit var amount: EditText
-    private lateinit var category: Spinner
-    private lateinit var paymentMethod: Spinner
-    private lateinit var dateOfTransaction: EditText
-    private lateinit var startTime: EditText
-    private lateinit var endTime: EditText
-    private lateinit var description: EditText
     private lateinit var btnAdd: Button
     private lateinit var btnAddImage: FrameLayout
     private lateinit var imagePreview: ImageView
     private var imageUri: Uri? = null
-   
+
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
@@ -58,7 +49,6 @@ class CreateTransactionFragment : Fragment() {
                 imagePreview.setImageURI(imageUri)
             }
         }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,21 +72,8 @@ class CreateTransactionFragment : Fragment() {
 
         btnAddImage = view.findViewById(R.id.btnAddImage)
         imagePreview = view.findViewById(R.id.imagePreview)
-        title = view.findViewById(R.id.etTitle)
-        transactionType = view.findViewById(R.id.spType)
-        amount = view.findViewById(R.id.etAmount)
-        category = view.findViewById(R.id.spCategory)
-        paymentMethod = view.findViewById(R.id.spPayment)
-        dateOfTransaction = view.findViewById(R.id.etDate)
-        startTime = view.findViewById(R.id.etStartTime)
-        endTime = view.findViewById(R.id.etEndTime)
-        description = view.findViewById(R.id.editTextDescription)
-        btnAdd = view.findViewById(R.id.btnAdd)
 
-        btnAddImage   = view.findViewById(R.id.btnAddImage)
-        imagePreview  = view.findViewById(R.id.imagePreview)
-
-        listOf(dateOfTransaction, startTime, endTime).forEach {
+        listOf(etDate, etStartTime, etEndTime).forEach {
             it.isFocusable = false
             it.isClickable = true
         }
@@ -130,7 +107,6 @@ class CreateTransactionFragment : Fragment() {
             listOf("Cash", "Credit Card", "Debit Card")
         )
 
-
         etDate.setOnClickListener { showDatePicker(etDate) }
         etStartTime.setOnClickListener { showTimePicker(etStartTime) }
         etEndTime.setOnClickListener { showTimePicker(etEndTime) }
@@ -146,23 +122,6 @@ class CreateTransactionFragment : Fragment() {
             val start = etStartTime.text.toString()
             val end = etEndTime.text.toString()
             val desc = etDescription.text.toString().trim()
-        // Date picker
-        dateOfTransaction.setOnClickListener { showDatePicker(dateOfTransaction) }
-
-        // Time pickers
-        startTime.setOnClickListener { showTimePicker(startTime) }
-        endTime.setOnClickListener   { showTimePicker(endTime) }
-
-        btnAdd.setOnClickListener {
-            val title    = title.text.toString().trim()
-            val type     = transactionType.selectedItem as String
-            val amount   = amount.text.toString().toDoubleOrNull() ?: 0.0
-            val category = category.selectedItem as String
-            val payment  = paymentMethod.selectedItem as String
-            val date     = dateOfTransaction.text.toString()
-            val start    = startTime.text.toString()
-            val end      = endTime.text.toString()
-            val desc     = description.text.toString().trim()
 
             if (title.isEmpty() || amount <= 0.0 || date.isEmpty()) {
                 Toast.makeText(
