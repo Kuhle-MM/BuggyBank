@@ -8,8 +8,8 @@ class SignInTest {
     @Test
     fun signInUser_test() {
         val auth = FirebaseAuth.getInstance()
-        val email = "test@gmail.com"
-        val password = "test123"
+        val email = "hw@gmail.com"
+        val password = "Kotlin@2025"
         auth.createUserWithEmailAndPassword(email, password)
         auth.signInWithEmailAndPassword(email, password)
         val user = auth.currentUser
