@@ -27,11 +27,10 @@ class Sign_in : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-        
+
         Log.d(TAG, "onCreate: ")
-        
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -43,28 +42,36 @@ class Sign_in : AppCompatActivity() {
         }
         binding.SignInButton.setOnClickListener {
             Log.d(TAG, "onClick: Sign In button clicked")
-            
+
             val email = binding.SignInEmail.text.toString().trim { it <= ' ' }
             val password = binding.SignInPassword.text.toString().trim { it <= ' ' }
-            
+
             if (email.isEmpty() || password.isEmpty()) {
                 Log.d(TAG, "onClick: Email or password is empty")
-                Toast.makeText(this@Sign_in, "Please enter email and password", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@Sign_in,
+                    "Please enter email and password",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
-                
+
             } else {
                 Log.d(TAG, "onClick: Valid credentials entered")
-                
+
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         Log.d(TAG, "signInWithEmailAndPassword: Started")
                         auth.signInWithEmailAndPassword(email, password).await()
                         Log.d(TAG, "signInWithEmailAndPassword: Completed")
-                        
-                        val dbRef = FirebaseDatabase.getInstance().getReference("users").child(auth.currentUser!!.uid)
+
+                        val dbRef = FirebaseDatabase.getInstance().getReference("users")
+                            .child(auth.currentUser!!.uid)
                         dbRef.child("signedIn").setValue(true)
-                        Log.d(TAG, "signInWithEmailAndPassword: Signed in status changed to true")
-                        
+                        Log.d(
+                            TAG,
+                            "signInWithEmailAndPassword: Signed in status changed to true"
+                        )
+
                         withContext(Dispatchers.Main) {
                             Log.d(TAG, "signInWithEmailAndPassword: Navigating to MenuBar")
                             val intent = Intent(this@Sign_in, MenuBar::class.java)
@@ -81,23 +88,29 @@ class Sign_in : AppCompatActivity() {
                             ).show()
                         }
                     }
+
                 }
             }
-        }
-        binding.vForgotPassword.setOnClickListener {
-            Log.d(TAG, "onClick: Forgot Password button clicked")
-            val intent = Intent(this, ForgotPasswordActivity::class.java)
-            startActivity(intent)
+
+
+            binding.vForgotPassword.setOnClickListener {
+                Log.d(TAG, "onClick: Forgot Password button clicked")
+                val intent = Intent(this, ForgotPasswordActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
-    
+
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart: ")
-        
+
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val dbRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.uid).child("signedIn")
+            val dbRef = FirebaseDatabase.getInstance().getReference("users")
+                .child(currentUser.uid)
+                .child("signedIn")
             Log.d(TAG, "onStart: Checking if user is logged in")
             dbRef.get().addOnCompleteListener { task ->
                 if (task.isSuccessful && task.result.exists() && task.result.value as Boolean) {
@@ -109,5 +122,7 @@ class Sign_in : AppCompatActivity() {
                 }
             }
         }
+
+
     }
 }
