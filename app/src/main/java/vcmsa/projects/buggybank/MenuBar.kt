@@ -20,21 +20,9 @@ import java.io.FileOutputStream
 private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
 private val FragSetABudget = SetBudgetFragment()
+private val FragDashboard = MainPageFragment()
 
 class MenuBar : AppCompatActivity() {
-
-    private val reportArray = arrayListOf(
-        ReportDB(
-            "McDonalds", "Expense", 126.90,
-            "https://picsum.photos/200/300", "2025-03-28",
-            "Food", "Cash", "McD's lunch", "08:55:63", "08:59:02"
-        ),
-        ReportDB(
-            "Spar", "Expense", 433.86,
-            "https://picsum.photos/200/300", "2025-03-28",
-            "Groceries", "Card", null, "09:55:63", "09:59:02"
-        )
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,17 +35,16 @@ class MenuBar : AppCompatActivity() {
             insets
         }
 
-        replaceFrag(FragAnalysis)
+        replaceFrag(FragDashboard)
 
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_home, R.id.ic_trophies -> replaceFrag(FragAnalysis)
-                R.id.ic_analysis, R.id.ic_transactions -> {
-                    replaceFrag(FragReport)
-                   // createPDF()
-                    }
+                R.id.ic_home -> replaceFrag(FragDashboard)
+                R.id.ic_analysis ->  replaceFrag(FragAnalysis)
+                R.id.ic_transactions -> replaceFrag(FragReport)
                 R.id.ic_create -> replaceFrag(FragSetABudget)
+                R.id.ic_trophies -> replaceFrag(FragDashboard)
             }
             true
         }

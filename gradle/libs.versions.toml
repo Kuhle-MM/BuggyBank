@@ -50,9 +50,6 @@ googleid = { group = "com.google.android.libraries.identity.googleid", name = "g
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version = "1.5.0" }
 
 
-androidx-annotation = "androidx.annotation:annotation:1.7.1"
-androidx-lifecycle-livedata-ktx = "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
-androidx-lifecycle-viewmodel-ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
 
 
 [plugins]
