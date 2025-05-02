@@ -4,16 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main_background"
     tools:context=".ReportFragment">
 
+    <ImageView
+        android:id="@+id/main_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_margin="20sp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:background="@drawable/menu"
+        android:importantForAccessibility="yes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="41dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_margin="10sp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/logo"
+        android:importantForAccessibility="yes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toEndOf="@+id/main_image"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/rvReportList"
+        style="@style/Widget.AppCompat.ListView"
         android:layout_width="409dp"
-        android:layout_height="529dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -21,7 +53,7 @@
         android:layout_width="404dp"
         android:layout_height="48dp"
         android:layout_marginBottom="12dp"
-        android:background="#A0D683"
+        android:background="@drawable/vector_textbox"
         android:fontFamily="@font/chakra_petch_bold"
         android:gravity="center_horizontal"
         android:text="Report"
@@ -30,21 +62,20 @@
         android:textSize="29sp"
         app:layout_constraintBottom_toTopOf="@+id/rvReportList"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.988" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnDownloadPDF"
-        android:layout_width="128dp"
-        android:layout_height="62dp"
-        android:text="Download"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_download_24"
         android:onClick="createPDF"
         app:layout_constraintBottom_toTopOf="@+id/tvReportHeading"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"

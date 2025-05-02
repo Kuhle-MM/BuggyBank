@@ -24,7 +24,7 @@ class Sign_in : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
         
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -71,6 +71,7 @@ class Sign_in : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val intent = Intent(this@Sign_in, MenuBar::class.java)
+            intent.putExtra("user", currentUser)
             startActivity(intent)
             finish()
         }
