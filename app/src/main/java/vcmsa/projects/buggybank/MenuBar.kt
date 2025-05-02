@@ -21,6 +21,8 @@ private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
 private val FragSetABudget = SetBudgetFragment()
 private val FragDashboard = MainPageFragment()
+private val FragCreateTransaction = CreateTransactionFragment()
+private val FragCreateCategory = CreateCategoryFragment()
 
 class MenuBar : AppCompatActivity() {
 
@@ -43,7 +45,7 @@ class MenuBar : AppCompatActivity() {
                 R.id.ic_home -> replaceFrag(FragDashboard)
                 R.id.ic_analysis ->  replaceFrag(FragAnalysis)
                 R.id.ic_transactions -> replaceFrag(FragReport)
-                R.id.ic_create -> replaceFrag(FragSetABudget)
+                R.id.ic_create -> replaceFrag(FragCreateTransaction)
                 R.id.ic_trophies -> replaceFrag(FragDashboard)
             }
             true
