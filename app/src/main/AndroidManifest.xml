@@ -41,7 +41,8 @@
 
         <activity
             android:name=".MenuBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BuggyBank"/>
 
         <activity
             android:name=".MainActivity"

@@ -6,14 +6,20 @@ import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import java.io.File
 import java.io.FileOutputStream
 
@@ -22,9 +28,15 @@ private val FragAnalysis = AnalysisFragment()
 private val FragDashboard = MainPageFragment()
 private val FragCreatePopUp = CreatPopUpFragment()
 
+private val FragSetABudget = SetBudgetFragment()
+//private val FragSettings = SettingsFragment()
+//private val FragLogout
 
 
 class MenuBar : AppCompatActivity() {
+
+    lateinit var navToggle :ActionBarDrawerToggle
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +49,17 @@ class MenuBar : AppCompatActivity() {
             insets
         }
 
+        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+        val sideNavView : NavigationView = findViewById(R.id.sideMenubar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         replaceFrag(FragDashboard)
 
+        sideNavView.bringToFront()
+        drawerLayout.requestLayout()
+
+        //Bottom menu bar nav code
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
@@ -54,7 +75,34 @@ class MenuBar : AppCompatActivity() {
             }
             true
         }
+
+        //Side nav menu bar code
+        navToggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+        drawerLayout.addDrawerListener(navToggle)
+        navToggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        sideNavView.setNavigationItemSelectedListener {
+            when (it.itemId){
+                R.id.is_setABudget -> replaceFrag(FragSetABudget)
+                R.id.is_reports -> replaceFrag(FragReport)
+                R.id.is_calculator -> Toast.makeText(this,"Calculator coming soon",Toast.LENGTH_LONG).show()
+                R.id.is_currencyConvertor -> Toast.makeText(this,"Currency convertor coming soon",Toast.LENGTH_LONG).show()
+                R.id.is_switchAccount -> Toast.makeText(this,"Switch account coming soon",Toast.LENGTH_LONG).show()
+                R.id.is_budgetBuddy -> Toast.makeText(this,"Budget buddy coming soon",Toast.LENGTH_LONG).show()
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (navToggle.onOptionsItemSelected(item)) {
+            true
+        } else super.onOptionsItemSelected(item)
+    }
+
 
     private fun replaceFrag(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/is_setABudget"
+        android:icon="@drawable/baseline_edit_note_24"
+        android:title="Set A Budget"
+        />
+
+    <item
+        android:id="@+id/is_reports"
+        android:icon="@drawable/rounded_description_24"
+        android:title="Reports"/>
+
+    <item
+        android:id="@+id/is_budgetBuddy"
+        android:icon="@drawable/baseline_people_outline_24"
+        android:title="Budget Buddy"/>
+
+
+
+            <item android:id="@+id/is_switchAccount"
+                android:icon="@drawable/rounded_sync_alt_24"
+                android:title="Swicth Account"/>
+
+
+
+    <item
+        android:id="@+id/is_calculator"
+        android:icon="@drawable/rounded_calculate_24"
+        android:title="Calculator"/>
+    <item
+        android:id="@+id/is_currencyConvertor"
+        android:icon="@drawable/baseline_currency_exchange_24"
+        android:title="Currency Convertor" />
+
+    <item
+        android:id="@+id/is_settings"
+        android:icon="@drawable/rounded_settings_24"
+        android:title="Settings" />
+    <item
+        android:id="@+id/is_logut"
+        android:icon="@drawable/baseline_output_24"
+        android:title="Logout" />
+</menu>
