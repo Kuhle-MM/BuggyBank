@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createCategoryContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_app"
@@ -51,6 +52,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintBottom_toTopOf="@+id/categoryRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.854" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
@@ -62,11 +68,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintBottom_toTopOf="@+id/categoryNameInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/labelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
         android:text="Name:"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,11 +86,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintBottom_toTopOf="@+id/labelType"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/categoryNameInput"
         android:layout_width="197dp"
         android:layout_height="61dp"
+        android:layout_marginStart="68dp"
         android:hint="Enter category name"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,11 +102,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.631" />
+        app:layout_constraintBottom_toTopOf="@+id/incomeRadioButton"
+        app:layout_constraintStart_toEndOf="@+id/labelName" />
 
     <TextView
         android:id="@+id/labelType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Type:"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,14 +119,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintBottom_toTopOf="@+id/addCategoryButton"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/typeRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="32dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="509dp">
+        app:layout_constraintBottom_toTopOf="@+id/labelType"
+        app:layout_constraintStart_toStartOf="parent">
 
     </RadioGroup>
 
@@ -116,30 +138,39 @@
         android:id="@+id/addCategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.852" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioButton
         android:id="@+id/expenseRadioButton"
         android:layout_width="90dp"
         android:layout_height="50dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="28dp"
         android:text="Expense"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.605"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.746" />
+        app:layout_constraintBottom_toTopOf="@+id/addCategoryButton"
+        app:layout_constraintStart_toEndOf="@+id/labelType" />
 
     <RadioButton
         android:id="@+id/incomeRadioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="Income"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -147,5 +178,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.746" />
+        app:layout_constraintBottom_toTopOf="@+id/addCategoryButton"
+        app:layout_constraintStart_toEndOf="@+id/expenseRadioButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,4 +49,8 @@
     <string name="submit">Submit</string>
     <string name="logo">Logo</string>
     <string name="conform_password">Confirm Password</string>
+
+    <!--Strings for side nav menu bar-->
+    <string name="open">Open</string>string>
+    <string name="close">Close</string>string>
 </resources>
