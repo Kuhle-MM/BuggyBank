@@ -13,7 +13,12 @@ import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 
@@ -21,6 +26,7 @@ private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
 private val FragSetABudget = SetBudgetFragment()
 private val FragDashboard = MainPageFragment()
+private val FragTransactionRecords = TransactionRecords()
 
 class MenuBar : AppCompatActivity() {
 
@@ -38,11 +44,14 @@ class MenuBar : AppCompatActivity() {
         replaceFrag(FragDashboard)
 
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
+
+
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
+
                 R.id.ic_home -> replaceFrag(FragDashboard)
                 R.id.ic_analysis ->  replaceFrag(FragAnalysis)
-                R.id.ic_transactions -> replaceFrag(FragReport)
+                R.id.ic_transactions -> replaceFrag(FragTransactionRecords)
                 R.id.ic_create -> replaceFrag(FragSetABudget)
                 R.id.ic_trophies -> replaceFrag(FragDashboard)
             }
@@ -52,8 +61,10 @@ class MenuBar : AppCompatActivity() {
 
     private fun replaceFrag(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainerView, fragment)
-        transaction.commit()
+        lifecycleScope.launch {
+            transaction.replace(R.id.fragmentContainerView, fragment)
+            transaction.commit()
+        }
     }
 
     fun createPDF(transactions: List<Transaction>) {

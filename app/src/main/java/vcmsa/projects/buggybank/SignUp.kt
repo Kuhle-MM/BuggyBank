@@ -7,11 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -19,7 +22,7 @@ import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
 
 
 class Sign_up : AppCompatActivity() {
-    
+
     private lateinit var auth: FirebaseAuth
 
     private lateinit var binding: ActivitySignUpBinding
@@ -36,6 +39,7 @@ class Sign_up : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         binding.SignUpLogin.setOnClickListener {
             val intent = Intent(this@Sign_up, Sign_in::class.java)
             startActivity(intent)
@@ -86,10 +90,20 @@ class Sign_up : AppCompatActivity() {
                 }
 
 
-                CoroutineScope(Dispatchers.IO).launch {
+                lifecycleScope.launch {
                     try {
                         auth.createUserWithEmailAndPassword(email, password).await()
                         withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                this@Sign_up,
+                                "Sign up successful",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            val user = auth.currentUser
+                            val userReference = databaseReference.child("users").child(user!!.uid)
+                            userReference.child("username").setValue(username)
+                            userReference.child("email").setValue(email)
+                            userReference.child("password").setValue(password)
                             startActivity(Intent(this@Sign_up, Sign_in::class.java))
                         }
                     } catch (e: Exception) {
