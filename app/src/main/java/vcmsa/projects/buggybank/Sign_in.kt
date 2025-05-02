@@ -45,8 +45,9 @@ class Sign_in : AppCompatActivity() {
                     try {
                         auth.signInWithEmailAndPassword(email, password).await()
                         withContext(Dispatchers.Main) {
-                            val intent = Intent(this@Sign_in, MainPageFragment::class.java)
+                            val intent = Intent(this@Sign_in, MenuBar::class.java)
                             startActivity(intent)
+                            finish()
                         }
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
@@ -62,12 +63,16 @@ class Sign_in : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    //Add more requirement for this since Logging in should be linked with a device
+    //so if(loggedIn on Samsung A15) then {send them to Menubar}
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this@Sign_in, MainPageFragment::class.java)
+            val intent = Intent(this@Sign_in, MenuBar::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

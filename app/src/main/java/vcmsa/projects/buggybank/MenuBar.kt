@@ -21,7 +21,7 @@ private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
 private val FragSetABudget = SetBudgetFragment()
 
-class menubar : AppCompatActivity() {
+class MenuBar : AppCompatActivity() {
 
     private val reportArray = arrayListOf(
         ReportDB(
