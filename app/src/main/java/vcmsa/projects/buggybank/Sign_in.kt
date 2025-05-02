@@ -35,11 +35,13 @@ class Sign_in : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        
         binding.SignInRegister.setOnClickListener {
             Log.d(TAG, "onClick: Register button clicked")
             val intent = Intent(this@Sign_in, Sign_up::class.java)
             startActivity(intent)
         }
+        
         binding.SignInButton.setOnClickListener {
             Log.d(TAG, "onClick: Sign In button clicked")
 
@@ -91,6 +93,7 @@ class Sign_in : AppCompatActivity() {
 
                 }
             }
+
 
 
             binding.vForgotPassword.setOnClickListener {
