@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
+import java.security.MessageDigest
 
 
 class Sign_up : AppCompatActivity() {
@@ -71,7 +72,7 @@ class Sign_up : AppCompatActivity() {
 
                 // Check if the password is valid
                 if (!password.any { it in "@#$%^&*" }) {
-                    Log.d(TAG, "Password must contain at least one special character")
+                    Log.d(TAG, "Password must contain at least one special character like @#\$%^&*")
                     Toast.makeText(
                         this,
                         "Password must contain at least one special character",
@@ -121,18 +122,33 @@ class Sign_up : AppCompatActivity() {
                           
                             // Create a reference to the user's node in the database
                             val userReference = databaseReference.child("users").child(user!!.uid)
+
+                            // Hash the password
+                            val hashpassword = sha256(password)
+
                             
                             // Add the user's details to the database
                             Log.d(TAG, "Storing user details in database")
-                            userReference.child("username").setValue(username)
+                            //userdetails child
+//                            userReference.child("categories").setValue(0)
+//                            userReference.child("transactions").setValue("")
+                            userReference.child("useraccount").setValue("")
+                            userReference.child("type").setValue("")
+                            userReference.child("name").setValue(username)
+                            userReference.child("surname").setValue("")
                             userReference.child("email").setValue(email)
+                            userReference.child("password").setValue(hashpassword)
+                            userReference.child("signedin").setValue(false)
+                            userReference.child("userpicture").setValue("")
+                            userReference.child("budget").setValue("")
+                            
                             
                             // WARNING: Storing passwords in plaintext is a bad idea in a real app
                             // In a real app, you should hash and store the password securely
                             userReference.child("password").setValue(password)
                             
                             // Check if data was stored by getting the snapshot
-                            val snapshot = userReference.child("username").get().await()
+                            val snapshot = userReference.child("name").get().await()
                             if (snapshot.exists()) {
                                 Log.d(TAG, "Data stored successfully")
                                 Toast.makeText(
@@ -154,6 +170,8 @@ class Sign_up : AppCompatActivity() {
                             binding.SignUpPassword.text?.clear()
                             binding.SignUpPasswordConfirm.text?.clear()
                             binding.username.text.clear()
+
+                            // Go to sign in page
                             
                             startActivity(Intent(this@Sign_up, Sign_in::class.java))
                         }
@@ -176,6 +194,23 @@ class Sign_up : AppCompatActivity() {
 
                 }
             }
+        }
+    }
+    fun sha256(base: String): String {
+        try {
+            val digest = MessageDigest.getInstance("SHA-256")
+            val hash = digest.digest(base.toByteArray(charset("UTF-8")))
+            val hexString = StringBuffer()
+            
+            for (i in hash.indices) {
+                val hex = Integer.toHexString(0xff and hash[i].toInt())
+                if (hex.length == 1) hexString.append('0')
+                hexString.append(hex)
+            }
+            
+            return hexString.toString()
+        } catch (ex: java.lang.Exception) {
+            throw RuntimeException(ex)
         }
     }
 }

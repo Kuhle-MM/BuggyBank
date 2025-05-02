@@ -41,6 +41,7 @@
         android:id="@+id/fragmentContainerView"
         android:name="vcmsa.projects.buggybank.AnalysisFragment"
         android:layout_width="match_parent"
+        android:layout_height="680dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/NavBar"
         app:layout_constraintEnd_toEndOf="parent"
