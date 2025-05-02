@@ -1,3 +1,5 @@
+package vcmsa.projects.buggybank
+
 data class Expense(
     val title: String,
     val type: String,

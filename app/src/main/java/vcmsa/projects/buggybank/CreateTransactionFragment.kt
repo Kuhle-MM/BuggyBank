@@ -1,6 +1,5 @@
 package vcmsa.projects.buggybank
 
-import Expense
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
