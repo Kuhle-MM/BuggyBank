@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetBudgetFragment">
+    tools:context=".SetBudgetFragment"
+    android:background="@drawable/background_app">
 
     <TextView
         android:id="@+id/txtSetBudget"
@@ -19,27 +20,78 @@
         app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+         />
+
+    <TextView
+        android:id="@+id/txtCategoriesHeading"
+        android:layout_width="157dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="152dp"
+        android:fontFamily="@font/chakra_petch"
+        android:text="CATEGORIES"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEntertainment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.416" />
 
     <Button
-        android:id="@+id/btnHealth"
+        android:id="@+id/btnClothing"
         android:layout_width="118dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
-        android:text="Health"
+        android:text="Clothing"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtAddCategoriesHeading"
-        app:layout_constraintEnd_toStartOf="@+id/btnInternet"
-        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintBottom_toTopOf="@+id/btnFuel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnHousing"
+        android:layout_width="118dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="Housing"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnInsurance"
+        app:layout_constraintEnd_toStartOf="@+id/btnClothing" />
+
+    <Button
+        android:id="@+id/btnFood"
+        android:layout_width="118dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="Food"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHealth"
+        app:layout_constraintEnd_toStartOf="@+id/btnInsurance"
+        app:layout_constraintHorizontal_bias="0.303"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnInsurance"
+        android:layout_width="118dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="Insurance"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnInternet"
+        app:layout_constraintEnd_toStartOf="@+id/btnFuel" />
 
     <Button
         android:id="@+id/btnFuel"
         android:layout_width="118dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="Fuel"
         android:textSize="13sp"
@@ -47,11 +99,24 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:id="@+id/btnHealth"
+        android:layout_width="118dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Health"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtAddCategoriesHeading"
+        app:layout_constraintEnd_toStartOf="@+id/btnInternet"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btnInternet"
         android:layout_width="118dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="Internet"
         android:textSize="13sp"
@@ -62,8 +127,8 @@
         android:id="@+id/btnGroceries"
         android:layout_width="118dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="Groceries"
         android:textSize="13sp"
@@ -71,102 +136,38 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/btnInsurance"
-        android:layout_width="118dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="Insurance"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnInternet"
-        app:layout_constraintEnd_toStartOf="@+id/btnFuel" />
-
-    <TextView
-        android:id="@+id/txtCategoriesHeading"
-        android:layout_width="157dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="152dp"
-        android:fontFamily="@font/chakra_petch_light"
-        android:text="CATEGORIES"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEntertainment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/btnFood"
-        android:layout_width="118dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="Food"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnHealth"
-        app:layout_constraintEnd_toStartOf="@+id/btnInsurance"
-        app:layout_constraintHorizontal_bias="0.793"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnHousing"
-        android:layout_width="118dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="Housing"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnInsurance"
-        app:layout_constraintEnd_toStartOf="@+id/btnClothing" />
-
-    <Button
-        android:id="@+id/btnClothing"
-        android:layout_width="118dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="Clothing"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnFuel"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
         android:id="@+id/btnEntertainment"
         android:layout_width="118dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="Entertainment"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/btnFood"
         app:layout_constraintEnd_toStartOf="@+id/btnHousing"
-        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintHorizontal_bias="0.303"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtAddCategoriesHeading"
         android:layout_width="157dp"
         android:layout_height="33dp"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="@font/chakra_petch_light"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/chakra_petch"
         android:text="ADD CATEGORY"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/txtHeadingChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtMaximumHeading"
         android:layout_width="136dp"
         android:layout_height="30dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="124dp"
-        android:fontFamily="@font/chakra_petch_light"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="128dp"
+        android:fontFamily="@font/chakra_petch"
         android:text="MAXIMUM BUDGET : "
         android:textAllCaps="true"
         android:textSize="14sp"
@@ -182,7 +183,6 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -195,20 +195,21 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/btnSet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtHeadingChange"
         android:layout_width="115dp"
         android:layout_height="28dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="36dp"
         android:fontFamily="@font/chakra_petch"
         android:text=""
         android:textAllCaps="true"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/txtMaximumHeading"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent" />
 
     <SeekBar
@@ -217,21 +218,22 @@
         android:layout_width="191dp"
         android:layout_height="47dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="56dp"
         android:max="10000"
         android:progress="0"
         app:layout_constraintBottom_toTopOf="@+id/btnAddCategory"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/txtMaximumHeading" />
 
     <TextView
         android:id="@+id/txtSeekValue"
         android:layout_width="102dp"
         android:layout_height="24dp"
+        android:layout_marginTop="20dp"
         android:text="R0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBarMin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

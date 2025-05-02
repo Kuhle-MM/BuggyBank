@@ -2,6 +2,7 @@ package vcmsa.projects.buggybank
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +20,12 @@ import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
 
 
 class Sign_up : AppCompatActivity() {
-    
-    private lateinit var auth: FirebaseAuth
 
+    private val TAG = "SignUp"
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var databaseReference: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,6 +39,7 @@ class Sign_up : AppCompatActivity() {
             insets
         }
         binding.SignUpLogin.setOnClickListener {
+            // Go to sign in page
             val intent = Intent(this@Sign_up, Sign_in::class.java)
             startActivity(intent)
         }
@@ -48,15 +51,23 @@ class Sign_up : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty()) {
 
+                // Check if the user has filled in all fields
                 if (email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) {
+                    Log.d(TAG, "Please fill in all fields")
                     Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
+
+                // Check if the email is valid
                 if (!email.contains("@")) {
+                    Log.d(TAG, "Email must contain @")
                     Toast.makeText(this, "Email must contain @", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
+
+                // Check if the password is valid
                 if (!password.any { it in "@#$%^&*" }) {
+                    Log.d(TAG, "Password must contain at least one special character")
                     Toast.makeText(
                         this,
                         "Password must contain at least one special character",
@@ -65,6 +76,7 @@ class Sign_up : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 if (!password.any { it.isDigit() }) {
+                    Log.d(TAG, "Password must contain at least one number")
                     Toast.makeText(
                         this,
                         "Password must contain at least one number",
@@ -73,6 +85,7 @@ class Sign_up : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 if (!password.any { it.isUpperCase() }) {
+                    Log.d(TAG, "Password must contain at least one uppercase letter")
                     Toast.makeText(
                         this,
                         "Password must contain at least one uppercase letter",
@@ -81,19 +94,67 @@ class Sign_up : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 if (password != passwordConfirm) {
+                    Log.d(TAG, "Passwords do not match")
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
-
+                // Create user in Firebase Authentication
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
+                        Log.d(TAG, "Creating user with email: $email and password: $password")
                         auth.createUserWithEmailAndPassword(email, password).await()
                         withContext(Dispatchers.Main) {
+                            Log.d(TAG, "Sign up successful")
+                            Toast.makeText(
+                                this@Sign_up,
+                                "Sign up successful",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                            // Get the current user
+                            val user = auth.currentUser
+                            // Create a reference to the user's node in the database
+                            val userReference = databaseReference.child("users").child(user!!.uid)
+                            // Add the user's details to the database
+                            Log.d(TAG, "Storing user details in database")
+                            userReference.child("username").setValue(username)
+                            userReference.child("email").setValue(email)
+                            // WARNING: Storing passwords in plaintext is a bad idea in a real app
+                            // In a real app, you should hash and store the password securely
+                            userReference.child("password").setValue(password)
+                            // Check if data was stored by getting the snapshot
+                            val snapshot = userReference.child("username").get().await()
+                            if (snapshot.exists()) {
+                                Log.d(TAG, "Data stored successfully")
+                                Toast.makeText(
+                                    this@Sign_up,
+                                    "Data stored successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Log.d(TAG, "Data not stored")
+                                Toast.makeText(
+                                    this@Sign_up,
+                                    "Data not stored",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            // Clear the input fields
+                            binding.signUpEmail.text.clear()
+                            binding.SignUpPassword.text?.clear()
+                            binding.SignUpPasswordConfirm.text?.clear()
+                            binding.username.text.clear()
                             startActivity(Intent(this@Sign_up, Sign_in::class.java))
                         }
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
+                            // Clear the input fields
+                            binding.signUpEmail.text.clear()
+                            binding.SignUpPassword.text?.clear()
+                            binding.SignUpPasswordConfirm.text?.clear()
+                            binding.username.text.clear()
+                            Log.d(TAG, "Sign up failed: ${e.message}")
                             Toast.makeText(
                                 this@Sign_up,
                                 "Sign up failed: ${e.message}",
