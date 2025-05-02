@@ -31,16 +31,17 @@ class Sign_in : AppCompatActivity() {
         Log.d(TAG, "onCreate: ")
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        
         binding.SignInRegister.setOnClickListener {
             Log.d(TAG, "onClick: Register button clicked")
             val intent = Intent(this@Sign_in, Sign_up::class.java)
             startActivity(intent)
         }
+        
         binding.SignInButton.setOnClickListener {
             Log.d(TAG, "onClick: Sign In button clicked")
             
@@ -84,6 +85,7 @@ class Sign_in : AppCompatActivity() {
                 }
             }
         }
+        
         binding.vForgotPassword.setOnClickListener {
             Log.d(TAG, "onClick: Forgot Password button clicked")
             val intent = Intent(this, ForgotPasswordActivity::class.java)
