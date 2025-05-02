@@ -34,8 +34,8 @@
             android:background="@drawable/vector_textbox"
             android:hint="Title"
             android:inputType="text"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="59dp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
