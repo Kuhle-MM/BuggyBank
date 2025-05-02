@@ -8,11 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -20,7 +23,7 @@ import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
 
 
 class Sign_up : AppCompatActivity() {
-
+  
     private val TAG = "SignUp"
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
@@ -38,6 +41,7 @@ class Sign_up : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         binding.SignUpLogin.setOnClickListener {
             // Go to sign in page
             val intent = Intent(this@Sign_up, Sign_in::class.java)
@@ -98,9 +102,9 @@ class Sign_up : AppCompatActivity() {
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-
+                
                 // Create user in Firebase Authentication
-                CoroutineScope(Dispatchers.IO).launch {
+                lifecycleScope.launch {
                     try {
                         Log.d(TAG, "Creating user with email: $email and password: $password")
                         auth.createUserWithEmailAndPassword(email, password).await()
@@ -114,15 +118,19 @@ class Sign_up : AppCompatActivity() {
 
                             // Get the current user
                             val user = auth.currentUser
+                          
                             // Create a reference to the user's node in the database
                             val userReference = databaseReference.child("users").child(user!!.uid)
+                            
                             // Add the user's details to the database
                             Log.d(TAG, "Storing user details in database")
                             userReference.child("username").setValue(username)
                             userReference.child("email").setValue(email)
+                            
                             // WARNING: Storing passwords in plaintext is a bad idea in a real app
                             // In a real app, you should hash and store the password securely
                             userReference.child("password").setValue(password)
+                            
                             // Check if data was stored by getting the snapshot
                             val snapshot = userReference.child("username").get().await()
                             if (snapshot.exists()) {
@@ -140,11 +148,13 @@ class Sign_up : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+                            
                             // Clear the input fields
                             binding.signUpEmail.text.clear()
                             binding.SignUpPassword.text?.clear()
                             binding.SignUpPasswordConfirm.text?.clear()
                             binding.username.text.clear()
+                            
                             startActivity(Intent(this@Sign_up, Sign_in::class.java))
                         }
                     } catch (e: Exception) {

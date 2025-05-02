@@ -16,12 +16,15 @@ class TransactionRecordsAdapter(private val transactions: List<Transaction>) :
         val tvPaymentMethod: TextView = itemView.findViewById(R.id.tvPaymentType)
         val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
+
+        // Uncomment when you want to add the  expanded view of the transactions
         //val tvTransactionType: TextView = itemView.findViewById(R.id.tvTransactionType)
         //val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
         //val tvStartDate: TextView = itemView.findViewById(R.id.tvExpStartDate)
         //val tvEndDate: TextView = itemView.findViewById(R.id.tvExpEndDate)
 
         // Commented out the expanded layout stuff
+        // Uncomment when you want to add the  expanded view of the transactions
         // val expandedLayout: View = itemView.findViewById(R.id.cvExpandedTransaction)
     }
 
@@ -38,6 +41,8 @@ class TransactionRecordsAdapter(private val transactions: List<Transaction>) :
         holder.tvPaymentMethod.text = transaction.paymentMethod
         holder.tvAmount.text = transaction.amount.toString()
         holder.tvDate.setText(transaction.dateOfTransaction.toString())
+
+        // Uncomment when you want to add the  expanded view of the transactions
         //holder.tvTransactionType.text = transaction.transactionType
         //holder.tvDescription.text = transaction.description
         //holder.tvStartDate.text = transaction.startTime.toString()

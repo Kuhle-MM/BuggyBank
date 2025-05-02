@@ -1,6 +1,7 @@
 package vcmsa.projects.buggybank
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +58,7 @@ class ReportFragment : Fragment() {
             val userId = user.uid
             val dbRef = FirebaseDatabase.getInstance().getReference("Transactions").child(userId)
 
+
             dbRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     rvReportList.clear()
@@ -76,7 +78,12 @@ class ReportFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Error loading data", Toast.LENGTH_SHORT).show()
+                    if (isAdded && context != null){
+                        Toast.makeText(context, "Error loading data", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Log.e("ReportFragment", "Fragment is not attached or context is null")
+                    }
                 }
             })
         } else {
