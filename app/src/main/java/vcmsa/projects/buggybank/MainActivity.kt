@@ -19,9 +19,12 @@ import androidx.core.view.WindowInsetsCompat
 
 import vcmsa.projects.buggybank.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-    
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +32,17 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
-        setContentView(R.layout.activity_main)
+        auth = Firebase.auth
+        //setContentView(R.layout.activity_main)
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragmentContainerView, CreateCategoryFragment())
-//            .commit()
+
+//        val intent = Intent(this,menubar::class.java)
+//        startActivity(intent)
 
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this,Sign_up::class.java)
@@ -53,9 +57,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-           val intent = Intent(this,menubar::class.java)
-           startActivity(intent)
+    }
 
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val intent = Intent(this@MainActivity, MenuBar::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
 

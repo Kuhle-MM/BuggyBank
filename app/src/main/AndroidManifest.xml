@@ -31,24 +31,21 @@
             android:exported="false" />
         <activity
             android:name=".Sign_in"
-            android:exported="true" >
-
-        </activity>
+            android:exported="false" />
 
         <activity
-            android:name=".menubar"
+            android:name=".MenuBar"
             android:exported="false" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <!--Path for file that is downloaded-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -58,7 +55,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
 
         <provider
             android:name="androidx.core.content.FileProvider"

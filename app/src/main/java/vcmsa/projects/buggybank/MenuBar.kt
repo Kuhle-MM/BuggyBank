@@ -22,7 +22,7 @@ private val FragAnalysis = AnalysisFragment()
 private val FragSetABudget = SetBudgetFragment()
 private val FragDashboard = MainPageFragment()
 
-class menubar : AppCompatActivity() {
+class MenuBar : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
