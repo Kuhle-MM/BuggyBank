@@ -2,15 +2,7 @@ package vcmsa.projects.buggybank
 
 import android.content.Intent
 
-import android.graphics.Canvas
-
-import android.graphics.Paint
-import android.graphics.pdf.PdfDocument
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
@@ -35,13 +27,13 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         //setContentView(R.layout.activity_main)
         enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-//        val intent = Intent(this,menubar::class.java)
+//        val intent = Intent(this,MenuBar::class.java)
 //        startActivity(intent)
 
         binding.btnSignUp.setOnClickListener {
