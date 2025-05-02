@@ -19,8 +19,10 @@ import java.io.FileOutputStream
 
 private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
-private val FragSetABudget = SetBudgetFragment()
 private val FragDashboard = MainPageFragment()
+private val FragCreatePopUp = CreatPopUpFragment()
+
+
 
 class MenuBar : AppCompatActivity() {
 
@@ -29,7 +31,7 @@ class MenuBar : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_menubar)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.menu)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -43,7 +45,11 @@ class MenuBar : AppCompatActivity() {
                 R.id.ic_home -> replaceFrag(FragDashboard)
                 R.id.ic_analysis ->  replaceFrag(FragAnalysis)
                 R.id.ic_transactions -> replaceFrag(FragReport)
-                R.id.ic_create -> replaceFrag(FragSetABudget)
+                R.id.ic_create -> {
+                    val showPopUp = FragCreatePopUp
+                    showPopUp.show(supportFragmentManager, "showPopUp")
+
+                }
                 R.id.ic_trophies -> replaceFrag(FragDashboard)
             }
             true
