@@ -1,8 +1,6 @@
 package vcmsa.projects.buggybank
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
@@ -30,8 +28,6 @@ import com.google.android.material.navigation.NavigationView
 import java.io.File
 import java.io.FileOutputStream
 
-private const val SHARED_PREFS_NAME = "com.vcmsa.buggybank"
-
 private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
 private val FragDashboard = MainPageFragment()
@@ -43,28 +39,20 @@ private val FragSetABudget = SetBudgetFragment()
 
 
 class MenuBar : AppCompatActivity() {
-
+    
     lateinit var navToggle: ActionBarDrawerToggle
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menubar)
-
-
-        prefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-
+        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.menu)) { v, insets ->
-
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val sideNavView: NavigationView = findViewById(R.id.sideMenubar)
@@ -80,25 +68,24 @@ class MenuBar : AppCompatActivity() {
         toolbar.bringToFront()
 
         replaceFrag(FragDashboard)
-
-
+        
         sideNavView.bringToFront()
         drawerLayout.requestLayout()
-
+        
         //Bottom menu bar nav code
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
-
-
+        
+        
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
-
+                
                 R.id.ic_home -> replaceFrag(FragDashboard)
-
                 R.id.ic_analysis -> replaceFrag(FragAnalysis)
                 R.id.ic_create -> {
                     val showPopUp = FragCreatePopUp
                     showPopUp.show(supportFragmentManager, "showPopUp")
                 }
+
                     R.id.ic_transactions -> replaceFrag(FragTransactionRecords)
                     R.id.ic_trophies -> replaceFrag(FragDashboard)
                 }
