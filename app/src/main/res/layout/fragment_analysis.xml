@@ -11,22 +11,26 @@
         android:id="@+id/txtChart"
         android:layout_width="157dp"
         android:layout_height="33dp"
+        android:layout_marginBottom="36dp"
         android:fontFamily="@font/chakra_petch_light"
         android:text="MARCH'S COMPARISON"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="186dp" />
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/txtChart2"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="195dp"
         android:layout_height="217dp"
+        android:background="@drawable/biggerbackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431"
-        android:background="@drawable/biggerbackground">
+        app:layout_constraintVertical_bias="0.431">
 
 
         <TextView
@@ -35,7 +39,11 @@
             android:layout_height="wrap_content"
             android:text="SAVED MOST IN:"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="7dp" />
+            tools:layout_editor_absoluteY="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/txtSavedMost"
@@ -44,16 +52,24 @@
             android:fontFamily="@font/chakra_petch_bold"
             android:text="SavedMostData"
             tools:layout_editor_absoluteX="17dp"
-            tools:layout_editor_absoluteY="140dp" />
+            tools:layout_editor_absoluteY="140dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="99dp"
-            android:layout_height="44dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:gravity="center"
             android:text="OVERPSPENT IN:"
             tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="87dp" />
+            tools:layout_editor_absoluteY="87dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/txtOverspent"
@@ -63,16 +79,24 @@
             android:fontFamily="@font/chakra_petch_bold"
             android:text="OverspentData"
             tools:layout_editor_absoluteX="17dp"
-            tools:layout_editor_absoluteY="176dp" />
+            tools:layout_editor_absoluteY="176dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="74dp"
-            android:layout_height="44dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:gravity="center"
             android:text="TOTAL EXPENSES:"
             tools:layout_editor_absoluteX="11dp"
-            tools:layout_editor_absoluteY="70dp" />
+            tools:layout_editor_absoluteY="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/txtTotalExpenses"
@@ -82,19 +106,24 @@
             android:fontFamily="@font/chakra_petch_bold"
             android:text="TotalExpenseData"
             tools:layout_editor_absoluteX="11dp"
-            tools:layout_editor_absoluteY="34dp" />
+            tools:layout_editor_absoluteY="34dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="195dp"
         android:layout_height="217dp"
+        android:background="@drawable/biggerbackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431"
-        android:background="@drawable/biggerbackground">
+        app:layout_constraintVertical_bias="0.431">
 
 
         <ProgressBar
@@ -103,7 +132,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="49dp"
-            tools:layout_editor_absoluteY="75dp" />
+            tools:layout_editor_absoluteY="75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/txtCurrentSpending1"
@@ -112,7 +145,11 @@
             android:fontFamily="@font/chakra_petch"
             android:text=""
             tools:layout_editor_absoluteX="101dp"
-            tools:layout_editor_absoluteY="51dp" />
+            tools:layout_editor_absoluteY="51dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -120,7 +157,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="49dp"
-            tools:layout_editor_absoluteY="142dp" />
+            tools:layout_editor_absoluteY="142dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/txtCurrentSpending2"
@@ -129,7 +170,11 @@
             android:fontFamily="@font/chakra_petch"
             android:text=""
             tools:layout_editor_absoluteX="101dp"
-            tools:layout_editor_absoluteY="123dp" />
+            tools:layout_editor_absoluteY="123dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -137,11 +182,15 @@
         android:id="@+id/txtChart2"
         android:layout_width="76dp"
         android:layout_height="30dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="26dp"
         android:fontFamily="@font/chakra_petch_light"
         android:text="CURRENT"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="189dp" />
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
 
     <TextView
         android:id="@+id/txtChart3"
@@ -151,12 +200,20 @@
         android:text="CHART"
         android:textSize="14sp"
         tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="461dp" />
+        tools:layout_editor_absoluteY="461dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/statusBar"
         android:layout_width="272dp"
         android:layout_height="217dp"
         tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="491dp" />
+        tools:layout_editor_absoluteY="491dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
