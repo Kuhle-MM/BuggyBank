@@ -39,9 +39,8 @@ private val FragSetABudget = SetBudgetFragment()
 
 
 class MenuBar : AppCompatActivity() {
-
+    
     lateinit var navToggle: ActionBarDrawerToggle
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +53,7 @@ class MenuBar : AppCompatActivity() {
             insets
         }
 
+
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val sideNavView: NavigationView = findViewById(R.id.sideMenubar)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -64,22 +64,24 @@ class MenuBar : AppCompatActivity() {
 
         sideNavView.bringToFront()
         drawerLayout.requestLayout()
-
+        
         //Bottom menu bar nav code
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
-
-
+        
+        
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
-
+                
                 R.id.ic_home -> replaceFrag(FragDashboard)
                 R.id.ic_analysis -> replaceFrag(FragAnalysis)
                 R.id.ic_create -> {
                     val showPopUp = FragCreatePopUp
                     showPopUp.show(supportFragmentManager, "showPopUp")
                 }
+
                 R.id.ic_transactions -> replaceFrag(FragTransactionRecords)
                 R.id.ic_trophies -> replaceFrag(FragDashboard)
+
             }
 
             true
