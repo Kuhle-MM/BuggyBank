@@ -2,7 +2,6 @@ package vcmsa.projects.buggybank
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +10,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 import vcmsa.projects.buggybank.databinding.ActivitySignInBinding
 
 class Sign_in : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth;
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,27 +34,46 @@ class Sign_in : AppCompatActivity() {
             startActivity(intent)
         }
         binding.SignInButton.setOnClickListener {
-            val email = binding.SignInEmail.text.toString()
-            val password = binding.SignInPassword.text.toString()
-           
-            if(email.isEmpty() || password.isEmpty()) {
+            val email = binding.SignInEmail.text.toString().trim{ it <= ' '}
+            val password = binding.SignInPassword.text.toString().trim{ it <= ' '}
+            
+                     if(email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this@Sign_in, "Please enter email and password", Toast.LENGTH_SHORT).show()
                 
             }   else {
-                if (email.isNotEmpty() && password.isNotEmpty()) {
-                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
-                        if (it.isSuccessful) {
-                            val intent = Intent(this@Sign_in, MainActivity::class.java)
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        auth.signInWithEmailAndPassword(email, password).await()
+                        withContext(Dispatchers.Main) {
+                            val intent = Intent(this@Sign_in, MenuBar::class.java)
                             startActivity(intent)
-                        } else {
-                            Toast.makeText(this@Sign_in, "User does not exist", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@Sign_in, "User does not exist", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
-                
+                }
             }
         }
-       
-       
+        binding.vForgotPassword.setOnClickListener {
+            val intent = Intent(this,ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
     }
-}
+
+    //Add more requirement for this since Logging in should be linked with a device
+    //so if(loggedIn on Samsung A15) then {send them to Menubar}
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val intent = Intent(this@Sign_in, MenuBar::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
 }
