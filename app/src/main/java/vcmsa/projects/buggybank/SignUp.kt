@@ -23,7 +23,7 @@ import vcmsa.projects.buggybank.databinding.ActivitySignUpBinding
 
 
 class Sign_up : AppCompatActivity() {
-  
+
     private val TAG = "SignUp"
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
@@ -70,7 +70,7 @@ class Sign_up : AppCompatActivity() {
                 }
 
                 // Check if the password is valid
-                if (!password.any { it in "@#$%^&*" }) {
+                if (!password.any { it in "@#\$%^&*!`~-_=+}][{\\|':;<>,./?" }) {
                     Log.d(TAG, "Password must contain at least one special character")
                     Toast.makeText(
                         this,
@@ -102,7 +102,7 @@ class Sign_up : AppCompatActivity() {
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                
+
                 // Create user in Firebase Authentication
                 lifecycleScope.launch {
                     try {
@@ -118,19 +118,19 @@ class Sign_up : AppCompatActivity() {
 
                             // Get the current user
                             val user = auth.currentUser
-                          
+
                             // Create a reference to the user's node in the database
                             val userReference = databaseReference.child("users").child(user!!.uid)
-                            
+
                             // Add the user's details to the database
                             Log.d(TAG, "Storing user details in database")
                             userReference.child("username").setValue(username)
                             userReference.child("email").setValue(email)
-                            
+
                             // WARNING: Storing passwords in plaintext is a bad idea in a real app
                             // In a real app, you should hash and store the password securely
                             userReference.child("password").setValue(password)
-                            
+
                             // Check if data was stored by getting the snapshot
                             val snapshot = userReference.child("username").get().await()
                             if (snapshot.exists()) {
@@ -148,13 +148,13 @@ class Sign_up : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-                            
+
                             // Clear the input fields
                             binding.signUpEmail.text.clear()
                             binding.SignUpPassword.text?.clear()
                             binding.SignUpPasswordConfirm.text?.clear()
                             binding.username.text.clear()
-                            
+
                             startActivity(Intent(this@Sign_up, Sign_in::class.java))
                         }
                     } catch (e: Exception) {
