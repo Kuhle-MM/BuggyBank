@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val intent = Intent(this,MenuBar::class.java)
-        startActivity(intent)
+//        val intent = Intent(this,MenuBar::class.java)
+//        startActivity(intent)
 
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this,Sign_up::class.java)
