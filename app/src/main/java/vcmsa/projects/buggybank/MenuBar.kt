@@ -18,7 +18,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import com.google.android.material.navigation.NavigationView
 import java.io.File
 import java.io.FileOutputStream
@@ -27,7 +32,7 @@ private val FragReport = ReportFragment()
 private val FragAnalysis = AnalysisFragment()
 private val FragDashboard = MainPageFragment()
 private val FragCreatePopUp = CreatPopUpFragment()
-
+private val FragTransactionRecords = TransactionRecords()
 private val FragSetABudget = SetBudgetFragment()
 //private val FragSettings = SettingsFragment()
 //private val FragLogout
@@ -61,16 +66,17 @@ class MenuBar : AppCompatActivity() {
 
         //Bottom menu bar nav code
         val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
+
+
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
+
                 R.id.ic_home -> replaceFrag(FragDashboard)
                 R.id.ic_analysis ->  replaceFrag(FragAnalysis)
-                R.id.ic_transactions -> replaceFrag(FragReport)
                 R.id.ic_create -> {
                     val showPopUp = FragCreatePopUp
                     showPopUp.show(supportFragmentManager, "showPopUp")
-
-                }
+                R.id.ic_transactions -> replaceFrag(FragTransactionRecords)
                 R.id.ic_trophies -> replaceFrag(FragDashboard)
             }
             true
@@ -106,8 +112,10 @@ class MenuBar : AppCompatActivity() {
 
     private fun replaceFrag(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainerView, fragment)
-        transaction.commit()
+        lifecycleScope.launch {
+            transaction.replace(R.id.fragmentContainerView, fragment)
+            transaction.commit()
+        }
     }
 
     fun createPDF(transactions: List<Transaction>) {
