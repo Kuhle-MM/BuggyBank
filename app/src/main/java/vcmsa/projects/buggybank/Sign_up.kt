@@ -8,14 +8,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -24,12 +21,12 @@ import java.security.MessageDigest
 
 
 class Sign_up : AppCompatActivity() {
-  
+    
     private val TAG = "SignUp"
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var databaseReference: DatabaseReference
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,12 +34,12 @@ class Sign_up : AppCompatActivity() {
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.signupPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        
         binding.SignUpLogin.setOnClickListener {
             // Go to sign in page
             val intent = Intent(this@Sign_up, Sign_in::class.java)
@@ -53,26 +50,26 @@ class Sign_up : AppCompatActivity() {
             val password = binding.SignUpPassword.text.toString()
             val passwordConfirm = binding.SignUpPasswordConfirm.text.toString()
             val username = binding.username.text.toString()
-
+            
             if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty()) {
-
+                
                 // Check if the user has filled in all fields
                 if (email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) {
                     Log.d(TAG, "Please fill in all fields")
                     Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-
+                
                 // Check if the email is valid
                 if (!email.contains("@")) {
                     Log.d(TAG, "Email must contain @")
                     Toast.makeText(this, "Email must contain @", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-
+                
                 // Check if the password is valid
-                if (!password.any { it in "@#$%^&*" }) {
-                    Log.d(TAG, "Password must contain at least one special character like @#\$%^&*")
+                if (!password.any { it in "@#\$%^&*!`~-_=+}][{\\|':;<>,./?" }) {
+                    Log.d(TAG, "Password must contain at least one special character")
                     Toast.makeText(
                         this,
                         "Password must contain at least one special character",
@@ -116,39 +113,26 @@ class Sign_up : AppCompatActivity() {
                                 "Sign up successful",
                                 Toast.LENGTH_LONG
                             ).show()
-
+                            
                             // Get the current user
                             val user = auth.currentUser
-                          
+                            
+                            val hashedPassword = sha256(password)
+                            
                             // Create a reference to the user's node in the database
                             val userReference = databaseReference.child("users").child(user!!.uid)
-
-                            // Hash the password
-                            val hashpassword = sha256(password)
-
                             
                             // Add the user's details to the database
                             Log.d(TAG, "Storing user details in database")
-                            //userdetails child
-//                            userReference.child("categories").setValue(0)
-//                            userReference.child("transactions").setValue("")
-                            userReference.child("useraccount").setValue("")
-                            userReference.child("type").setValue("")
-                            userReference.child("name").setValue(username)
-                            userReference.child("surname").setValue("")
+                            userReference.child("username").setValue(username)
                             userReference.child("email").setValue(email)
-                            userReference.child("password").setValue(hashpassword)
-                            userReference.child("signedin").setValue(false)
-                            userReference.child("userpicture").setValue("")
-                            userReference.child("budget").setValue("")
                             
                             
-                            // WARNING: Storing passwords in plaintext is a bad idea in a real app
-                            // In a real app, you should hash and store the password securely
-                            userReference.child("password").setValue(password)
+                            
+                            userReference.child("password").setValue(hashedPassword)
                             
                             // Check if data was stored by getting the snapshot
-                            val snapshot = userReference.child("name").get().await()
+                            val snapshot = userReference.child("username").get().await()
                             if (snapshot.exists()) {
                                 Log.d(TAG, "Data stored successfully")
                                 Toast.makeText(
@@ -170,8 +154,6 @@ class Sign_up : AppCompatActivity() {
                             binding.SignUpPassword.text?.clear()
                             binding.SignUpPasswordConfirm.text?.clear()
                             binding.username.text.clear()
-
-                            // Go to sign in page
                             
                             startActivity(Intent(this@Sign_up, Sign_in::class.java))
                         }
@@ -188,10 +170,10 @@ class Sign_up : AppCompatActivity() {
                                 "Sign up failed: ${e.message}",
                                 Toast.LENGTH_LONG
                             ).show()
-
+                            
                         }
                     }
-
+                    
                 }
             }
         }

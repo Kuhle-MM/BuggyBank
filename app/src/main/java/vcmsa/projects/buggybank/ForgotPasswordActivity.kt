@@ -20,7 +20,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.forgotPasswordPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

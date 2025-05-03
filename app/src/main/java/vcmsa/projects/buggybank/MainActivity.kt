@@ -1,64 +1,55 @@
 package vcmsa.projects.buggybank
 
 import android.content.Intent
-
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
+import androidx.activity.enableEdgeToEdge
 import vcmsa.projects.buggybank.databinding.ActivityMainBinding
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+    
     private lateinit var binding: ActivityMainBinding
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Inflate the layout using View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-        FirebaseApp.initializeApp(this)
-        auth = Firebase.auth
-        //setContentView(R.layout.activity_main)
-        enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createTransactionContainer)) { v, insets ->
+        
+        Log.d(TAG, "onCreate: View binding and layout set")
+        
+        // Apply window insets to the root view safely using binding
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            Log.d(TAG, "onCreate: Applied window insets")
             insets
         }
-
-//        val intent = Intent(this,MenuBar::class.java)
-//        startActivity(intent)
-
+        
+        // Button click listeners
         binding.btnSignUp.setOnClickListener {
-            val intent = Intent(this,Sign_up::class.java)
+            Log.d(TAG, "onClick: Sign Up button clicked")
+            val intent = Intent(this, Sign_up::class.java)
             startActivity(intent)
         }
+        
         binding.btnlogin.setOnClickListener {
-            val intent = Intent(this,Sign_in::class.java)
+            Log.d(TAG, "onClick: Login button clicked")
+            val intent = Intent(this, Sign_in::class.java)
             startActivity(intent)
         }
+        
         binding.vForgotPassword.setOnClickListener {
-            val intent = Intent(this,ForgotPasswordActivity::class.java)
+            Log.d(TAG, "onClick: Forgot Password button clicked")
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(intent)
-        }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val intent = Intent(this@MainActivity, MenuBar::class.java)
-            startActivity(intent)
-            finish()
         }
     }
 }
-
